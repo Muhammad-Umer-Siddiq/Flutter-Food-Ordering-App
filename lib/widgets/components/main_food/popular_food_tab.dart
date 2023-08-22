@@ -2,18 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/utilities/lists.dart';
 
-import '../../widgets/custom_widgets/custom_card_widget.dart';
-import '../../widgets/custom_widgets/custom_sized_box.dart';
-import '../each_food_details_screen.dart';
+import '../../../screens/each_food_details_screen.dart';
+import '../../custom_widgets/custom_card_widget.dart';
+import '../../custom_widgets/custom_sized_box.dart';
 
-class PopularFoodScreen extends StatefulWidget {
-  const PopularFoodScreen({super.key});
+class PopularFoodTab extends StatefulWidget {
+  const PopularFoodTab({super.key});
 
   @override
-  State<PopularFoodScreen> createState() => _PopularFoodScreenState();
+  State<PopularFoodTab> createState() => _PopularFoodTabState();
 }
 
-class _PopularFoodScreenState extends State<PopularFoodScreen> {
+class _PopularFoodTabState extends State<PopularFoodTab> {
   void _showDialogAndroid() {
     showDialog(
       context: context,

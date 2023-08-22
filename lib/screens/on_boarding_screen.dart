@@ -17,9 +17,9 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  final PageController pageController = PageController();
-  int currentPageNo = 0;
-  final int totalPages = 3;
+  final PageController _pageController = PageController();
+  int _currentPageNo = 0;
+  final int _totalPages = 3;
 
   final List<String> _bgImages = [
     'assets/images/bg_animated_image1.png',
@@ -36,13 +36,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView.builder(
-        controller: pageController,
-        itemCount: totalPages,
+        controller: _pageController,
+        itemCount: _totalPages,
         physics: const AlwaysScrollableScrollPhysics(),
         scrollDirection: Axis.horizontal,
         onPageChanged: (value) {
           setState(() {
-            currentPageNo = value;
+            _currentPageNo = value;
           });
         },
         itemBuilder: (context, index) => Container(
@@ -81,7 +81,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               width: 15,
                               height: 15,
                               decoration: BoxDecoration(
-                                  color: currentPageNo == containerIndex
+                                  color: _currentPageNo == containerIndex
                                       ? Colors.red
                                       : Colors.white,
                                   border:
@@ -92,15 +92,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 const MySizedBox(),
                 MyElevatedButton(
-                  buttonText: currentPageNo == 2 ? 'Get Started' : 'Skip',
+                  buttonText: _currentPageNo == _totalPages - 1
+                      ? 'Get Started'
+                      : 'Skip',
                   buttonPress: () {
-                    currentPageNo == 2
+                    _currentPageNo == 2
                         ? Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const MainFoodScreen(),
                             ))
-                        : pageController.jumpToPage(totalPages - 1);
+                        : _pageController.jumpToPage(_totalPages - 1);
                   },
                 )
               ],

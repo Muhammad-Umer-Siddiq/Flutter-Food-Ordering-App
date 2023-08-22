@@ -4,20 +4,20 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../models/api_models/meals_model.dart';
-import '../../utilities/lists.dart';
-import '../../widgets/custom_widgets/custom_card_widget.dart';
-import '../../widgets/custom_widgets/custom_sized_box.dart';
-import '../each_food_details_screen.dart';
+import '../../../models/api_models/meals_model.dart';
+import '../../../screens/each_food_details_screen.dart';
+import '../../../utilities/lists.dart';
+import '../../custom_widgets/custom_card_widget.dart';
+import '../../custom_widgets/custom_sized_box.dart';
 
-class MealsScreen extends StatefulWidget {
-  const MealsScreen({super.key});
+class MealsTab extends StatefulWidget {
+  const MealsTab({super.key});
 
   @override
-  State<MealsScreen> createState() => _MealsScreenState();
+  State<MealsTab> createState() => _MealsTabState();
 }
 
-class _MealsScreenState extends State<MealsScreen> {
+class _MealsTabState extends State<MealsTab> {
   Future getMealsData() async {
     const url = 'https://www.themealdb.com/api/json/v1/1/categories.php';
     var uri = Uri.parse(url);
