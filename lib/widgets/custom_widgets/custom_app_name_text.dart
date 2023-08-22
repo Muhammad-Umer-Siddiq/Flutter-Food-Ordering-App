@@ -1,19 +1,38 @@
 import 'package:flutter/material.dart';
 
+import '../../utilities/consts.dart';
+
 class MyAppNameText extends StatelessWidget {
-  final double? textSize;
+  final num? textSizeRatio;
   final TextStyle? textStyle;
-  const MyAppNameText({super.key, this.textSize, this.textStyle});
+  final num? widthRatio;
+  final num? heightRatio;
+  final TextOverflow? overFlow;
+  final FontStyle? fontStyle;
+  final Color? color;
+  const MyAppNameText({
+    super.key,
+    this.textSizeRatio,
+    this.textStyle,
+    this.overFlow,
+    this.widthRatio,
+    this.heightRatio,
+    this.fontStyle,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Order @ Eat",
+      appName,
+      textAlign: TextAlign.center,
+      overflow: overFlow,
       style: textStyle ??
           TextStyle(
-              fontStyle: FontStyle.italic,
-              fontSize: textSize ?? 36,
-              color: Colors.white),
+              fontStyle: fontStyle ?? FontStyle.italic,
+              fontSize:
+                  MediaQuery.textScaleFactorOf(context) * (textSizeRatio ?? 25),
+              color: color ?? Colors.white),
     );
   }
 }

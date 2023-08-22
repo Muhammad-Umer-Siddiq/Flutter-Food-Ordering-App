@@ -1,156 +1,139 @@
 import 'package:flutter/material.dart';
 
+import '../utilities/consts.dart';
+import '../widgets/components/starting screens/background_tile.dart';
 import '../widgets/custom_widgets/custom_app_name_text.dart';
 import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box_media_query.dart';
+import '../widgets/custom_widgets/custom_sized_box.dart';
+import '../widgets/custom_widgets/custom_text_form_field.dart';
 import 'main_food_screen.dart';
 import 'register_screen.dart';
 
-class SignInScreen extends StatelessWidget {
+// Fully responsive
+// Tested on min size of 320 × 320
+// Tested on full web size (display resolution: 1920 × 1080)
+// Tested on Pixel 3a mobile
+
+class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
+
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  final _formKey = GlobalKey<FormState>();
+  bool passwordShownS = true;
+
+  void _showPasswordS() => passwordShownS = !passwordShownS;
+
+  final String _account1Email = 'ahmed123@gmail.com';
+  final String _account1password = 'ahmed9999';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-              color: Colors.black,
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  opacity: 80,
-                  image: AssetImage(
-                    "assets/images/backgroun_pic2.jpg",
-                  ))),
-        ),
-        Positioned(
-          left: MediaQuery.of(context).size.width * 0.08,
-          right: MediaQuery.of(context).size.width * 0.075,
-          top: 60,
-          bottom: 20,
-          child: SingleChildScrollView(
-            child: Form(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const MySizedBox(heightRatio: 0.07),
-                  const MyAppNameText(),
-                  const SizedBox(height: 10),
-                  const Text("Sign-in",
-                      style: TextStyle(color: Colors.white, fontSize: 19)),
-                  const SizedBox(height: 15),
-                  SizedBox(
-                    width: 250,
-                    child: TextFormField(
-                      cursorColor: Colors.white,
-                      cursorHeight: 21,
-                      textAlignVertical: TextAlignVertical.center,
-                      validator: (value) {
-                        return null;
-                      },
-                      style: const TextStyle(color: Colors.white, fontSize: 19),
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          errorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red),
-                          ),
-                          labelStyle: TextStyle(color: Colors.white),
-                          floatingLabelStyle:
-                              TextStyle(color: Colors.white, fontSize: 20),
-                          labelText: 'Email Address'),
+        body: BackgroundTile(
+      bgImage: const AssetImage('assets/images/background_pic2.jpg'),
+      frontContent: Container(
+        alignment: Alignment.center,
+        width: MediaQuery.sizeOf(context).width * 0.8,
+        height: MediaQuery.sizeOf(context).height * 1,
+        child: SingleChildScrollView(
+          reverse: true,
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const Expanded(
+                    flex: 0, child: MyAppNameText(textSizeRatio: 32)),
+                const MySizedBox(),
+                Text("Sign-in",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.textScaleFactorOf(context) * 21)),
+                const MySizedBox(heightRatio: 0.04),
+                MyTextFormField(
+                  labelText: 'Email Address',
+                  controller: emailControllerS,
+                  hintText: 'abc123@gmail.com',
+                  validator: (value) {
+                    if (value == _account1Email) {
+                      return null;
+                    } else {
+                      return 'No such account exists';
+                    }
+                  },
+                ),
+                const MySizedBox(heightRatio: 0.03),
+                MyTextFormField(
+                  labelText: 'Password',
+                  controller: passwordControllerS,
+                  validator: (value) {
+                    if (value == _account1password) {
+                      return null;
+                    } else {
+                      return 'No such account exists';
+                    }
+                  },
+                  suffixIcon: IconButton(
+                    color: Colors.white,
+                    onPressed: () {
+                      setState(() {
+                        _showPasswordS();
+                      });
+                    },
+                    icon: const Icon(Icons.remove_red_eye),
+                  ),
+                ),
+                const MySizedBox(heightRatio: 0.06),
+                MyElevatedButton(
+                  textSizeRatio: 21,
+                  buttonText: "Sign in",
+                  buttonPress: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MainFoodScreen(),
+                      )),
+                ),
+                const MySizedBox(heightRatio: 0.03),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "Don't have an account? ",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: MediaQuery.textScaleFactorOf(context) * 18,
+                          color: Colors.white),
                     ),
-                  ),
-                  const SizedBox(height: 15),
-                  SizedBox(
-                    width: 250,
-                    child: TextFormField(
-                      cursorColor: Colors.white,
-                      cursorHeight: 21,
-                      textAlignVertical: TextAlignVertical.center,
-                      validator: (value) {
-                        return null;
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterScreen(),
+                            ));
                       },
-                      style: const TextStyle(color: Colors.white, fontSize: 19),
-                      keyboardType: TextInputType.visiblePassword,
-                      decoration: const InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          errorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red),
-                          ),
-                          labelStyle: TextStyle(color: Colors.white),
-                          floatingLabelStyle:
-                              TextStyle(color: Colors.white, fontSize: 20),
-                          labelText: 'Password'),
+                      child: Text(
+                        "Register",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.red.shade200,
+                            fontSize:
+                                MediaQuery.textScaleFactorOf(context) * 18),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Text(
-                          "Forget Password?",
-                          style: TextStyle(
-                              color: Colors.green.shade300, fontSize: 17),
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.1,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 60),
-                  MyElevatedButton(
-                    childText: "Sign in",
-                    buttonPress: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const MainFoodScreen(),
-                        )),
-                  ),
-                  const SizedBox(height: 40),
-                  Row(
-                    children: [
-                      const MySizedBox(widthRatio: 0.09),
-                      const Text(
-                        "Don't have an account? ",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const RegisterScreen(),
-                              ));
-                        },
-                        child: Text(
-                          "Register",
-                          style: TextStyle(
-                              color: Colors.red.shade200, fontSize: 18),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+                  ],
+                )
+              ],
             ),
           ),
         ),
-      ],
+      ),
     ));
   }
 }

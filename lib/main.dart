@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/screens/recommend_all_food_screen.dart';
+import 'package:food_ordering_app/screens/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,29 +11,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        listTileTheme: const ListTileThemeData(
+            leadingAndTrailingTextStyle:
+                TextStyle(color: Colors.black, fontSize: 18),
+            titleTextStyle: TextStyle(fontSize: 18, color: Colors.black)),
+        iconTheme: const IconThemeData(color: Colors.white),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red.shade700),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const SplashScreen(),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return const RecommendedAllFoodScreen();
   }
 }
