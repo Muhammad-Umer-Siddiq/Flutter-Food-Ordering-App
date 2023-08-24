@@ -8,7 +8,7 @@ import '../widgets/components/main_food/header_text.dart';
 import '../widgets/custom_widgets/custom_elevated_button.dart';
 import '../widgets/custom_widgets/custom_sized_box.dart';
 import 'order_placed_screen.dart';
-import 'payment_type_details.dart';
+import 'payment_enter_details.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -119,7 +119,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const PaymentDetailsScreen(),
+                                  const PaymentEnterDetailsScreen(),
                             ));
                       }
                     },
@@ -133,6 +133,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             MaterialPageRoute(
                               builder: (context) => const OrderPlacedScreen(),
                             ));
+                        setState(() {
+                          DeliveryProcessHelpers().setEverythingDefault();
+                        });
+                        // Once user order completed
                       }
                     },
                   ),

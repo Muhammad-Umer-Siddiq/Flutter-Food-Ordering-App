@@ -12,7 +12,6 @@ import 'register_screen.dart';
 // Fully responsive
 // Tested on min size of 320 × 320
 // Tested on full web size (display resolution: 1920 × 1080)
-// Tested on Pixel 3a mobile
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});

@@ -62,7 +62,7 @@ class _DiscountOfferTileState extends State<DiscountOfferTile> {
               minHeight: 33,
               buttonAlignment:
                   width > 1000 ? Alignment.center : Alignment.bottomRight,
-              textSizeRatio: height > 450 ? 19 : 17,
+              textSizeRatio: height > 450 ? 17 : 15,
               buttonText: "Order Now",
               buttonPress: () {},
               buttonHeightRatio: 0.05,

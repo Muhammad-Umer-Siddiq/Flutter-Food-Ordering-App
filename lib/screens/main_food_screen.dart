@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/models/custom_models/cart_item.dart';
+import 'package:food_ordering_app/screens/cart_screen.dart';
 import 'package:food_ordering_app/screens/full_menu_screen.dart';
 
 import '../widgets/components/main_food/categories_tile.dart';
@@ -45,7 +47,13 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
               size: 26,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CartScreen(cartItems: cartItems),
+                  ));
+            },
           ),
         ],
       ),
@@ -125,7 +133,7 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
                 ),
                 ListTile(
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const TermsConditionsScreen(),
@@ -139,7 +147,7 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
                 ),
                 ListTile(
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const PrivacyPolicyScreen(),

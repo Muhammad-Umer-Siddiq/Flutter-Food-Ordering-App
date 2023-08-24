@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/screens/main_food_screen.dart';
+import 'package:food_ordering_app/widgets/components/main_food/drinks_tab.dart';
 import 'package:food_ordering_app/widgets/components/main_food/meals_tab.dart';
 import 'package:food_ordering_app/widgets/components/main_food/popular_food_tab.dart';
 
@@ -125,6 +127,20 @@ class _FullMenuScreenState extends State<FullMenuScreen> {
       length: 3,
       child: Scaffold(
           appBar: AppBar(
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MainFoodScreen(),
+                        ));
+                  },
+                  icon: const Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ))
+            ],
             bottom: const TabBar(
               tabs: [
                 Tab(
@@ -159,14 +175,7 @@ class _FullMenuScreenState extends State<FullMenuScreen> {
             children: [
               PopularFoodTab(),
               MealsTab(),
-              Center(
-                child: Text(
-                  "Coming Soon!",
-                  textScaleFactor: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
+              DrinksTab(),
             ],
           )),
     );

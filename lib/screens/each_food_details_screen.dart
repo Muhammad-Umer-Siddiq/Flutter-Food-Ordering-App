@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/screens/full_menu_screen.dart';
 
 import '../models/api_models/meals_model.dart';
 import '../models/custom_models/cart_item.dart';
@@ -14,15 +15,15 @@ import '../widgets/custom_widgets/custom_sized_box.dart';
 import 'cart_screen.dart';
 
 class EachFoodDetailsScreen extends StatefulWidget {
-  final PopularFoodModel? foodCustomItem; // for static data & model
-  final Categories? categoriesFoodItem; // for dynamic data & model
+  final PopularFoodModel? popularFoodItem; // for static data
+  final Categories? categoriesFoodItem; // for dynamic data
   final bool isFoodInApi;
 
   const EachFoodDetailsScreen({
     super.key,
     required this.isFoodInApi,
     this.categoriesFoodItem,
-    this.foodCustomItem,
+    this.popularFoodItem,
   });
 
   @override
@@ -53,20 +54,23 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
             color: Colors.black,
           ),
           elevation: 10,
-          actionsOverflowButtonSpacing: 20,
           actionsAlignment: MainAxisAlignment.spaceBetween,
           actions: [
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FullMenuScreen(),
+                    ));
               },
               child: Text(
                 "View Full Menu",
-                style: TextStyle(fontSize: 19, color: Colors.red.shade900),
+                style: TextStyle(fontSize: 17, color: Colors.red.shade900),
               ),
             ),
             SizedBox(
-              width: 150,
+              width: 130,
               child: TextButton(
                   style: TextButton.styleFrom(backgroundColor: Colors.red),
                   onPressed: () {
@@ -78,7 +82,7 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                     textScaleFactor: 1,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: TextStyle(fontSize: 19, color: Colors.white),
+                    style: TextStyle(fontSize: 17, color: Colors.white),
                   )),
             )
           ],
@@ -101,7 +105,11 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
         actions: [
           GestureDetector(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const FullMenuScreen(),
+                  ));
             },
             child: Text(
               "View Full Menu",
@@ -205,31 +213,6 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                               ),
                             ),
                             const MySizedBox(heightRatio: 0.04),
-                            //                             Row(
-                            //                               children: [
-                            //                                 Checkbox(
-                            //                                   value: isExtraChecked,
-                            //                                   onChanged: (value) {
-                            //                                     setState(() {
-                            //                                       checkExtras();
-                            //                                     });
-                            //                                   },
-                            //                                 ),
-                            //                                 Text(
-                            //                                   widget.foodCustomItem!.foodExtras,
-                            //                                   style: const TextStyle(fontSize: 17.5),
-                            //                                 ),
-                            //                                 const Expanded(
-                            //                                     flex: 8, child: SizedBox(width: 110)),
-                            //                                 const Expanded(
-                            //                                   flex: 4,
-                            //                                   child: Text(
-                            //                                     "Rs 70",
-                            //                                     style: TextStyle(fontSize: 17),
-                            //                                   ),
-                            //                                 ),
-                            //                               ],
-                            //                             ),
                             const MySizedBox(),
                             MyElevatedButton(
                               buttonColor: Colors.red.shade300,
@@ -259,7 +242,7 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                     height: 200,
                     width: MediaQuery.of(context).size.width * 1,
                     child: Image.asset(
-                      widget.foodCustomItem!.foodImageURL,
+                      widget.popularFoodItem!.foodImageURL,
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -288,9 +271,10 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                                     onTap: () {
                                       setState(() {
                                         if (widget
-                                                .foodCustomItem!.foodQuantity >
+                                                .popularFoodItem!.foodQuantity >
                                             0) {
-                                          widget.foodCustomItem!.foodQuantity--;
+                                          widget
+                                              .popularFoodItem!.foodQuantity--;
                                         }
                                       });
                                     },
@@ -317,10 +301,10 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                                     height: 37,
                                     alignment: Alignment.center,
                                     child: Text(
-                                      widget.foodCustomItem!.foodQuantity
+                                      widget.popularFoodItem!.foodQuantity
                                           .toString(),
                                       style: TextStyle(
-                                          fontSize: widget.foodCustomItem!
+                                          fontSize: widget.popularFoodItem!
                                                       .foodQuantity ==
                                                   10
                                               ? 25
@@ -335,9 +319,10 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                                     onTap: () {
                                       setState(() {
                                         if (widget
-                                                .foodCustomItem!.foodQuantity <
+                                                .popularFoodItem!.foodQuantity <
                                             10) {
-                                          widget.foodCustomItem!.foodQuantity++;
+                                          widget
+                                              .popularFoodItem!.foodQuantity++;
                                         }
                                       });
                                     },
@@ -361,7 +346,7 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                             ),
                             Flexible(
                               child: Text(
-                                widget.foodCustomItem!.foodName,
+                                widget.popularFoodItem!.foodName,
                                 maxLines: 1,
                                 textScaleFactor: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -375,7 +360,7 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                             Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: Text(
-                                widget.foodCustomItem!.foodDescription,
+                                widget.popularFoodItem!.foodDescription,
                                 textAlign: TextAlign.center,
                                 textScaleFactor: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -413,7 +398,7 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                                   },
                                 ),
                                 Text(
-                                  widget.foodCustomItem!.foodExtras,
+                                  widget.popularFoodItem!.foodExtras,
                                   style: const TextStyle(fontSize: 17.5),
                                 ),
                                 const Expanded(
@@ -432,12 +417,7 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                               buttonAlignment: Alignment.center,
                               buttonText: "Add to cart",
                               buttonPress: () {
-                                addToCart(widget.foodCustomItem);
-
-                                setState(() {
-                                  widget.foodCustomItem!.foodQuantity++;
-                                  // Check if the item is already in the cart
-                                });
+                                addToCart(widget.popularFoodItem);
 
                                 Navigator.push(
                                     context,
@@ -446,6 +426,9 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                                         cartItems: cartItems,
                                       ),
                                     ));
+                                setState(() {
+                                  widget.popularFoodItem!.foodQuantity++;
+                                });
                               },
                               elevation: 40,
                             )

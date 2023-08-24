@@ -95,4 +95,18 @@ class DeliveryProcessHelpers {
 
   // To only unselect pay on arrival option
   void unselectArrivalPayment() => shouldPayOnArrival = false;
+
+  void setEverythingDefault() {
+    unselectPaymentTypes();
+    unselectArrivalPayment();
+
+    cartItems.clear();
+
+    for (int i = 0; i < cartItems.length; i++) {
+      cartItems[i].quantity = 0;
+    }
+    for (int i = 0; i < popularFoodList.length; i++) {
+      popularFoodList[i].foodQuantity = 0;
+    }
+  }
 }

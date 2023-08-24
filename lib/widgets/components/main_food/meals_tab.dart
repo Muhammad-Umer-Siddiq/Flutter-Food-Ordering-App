@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/widgets/components/main_food/food_display_tile.dart';
+import 'package:food_ordering_app/widgets/custom_widgets/custom_grid_view_builder.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../models/api_models/meals_model.dart';
 import '../../../screens/each_food_details_screen.dart';
 import '../../../utilities/lists.dart';
 import '../../custom_widgets/custom_card_widget.dart';
-import '../../custom_widgets/custom_sized_box.dart';
 
 class MealsTab extends StatefulWidget {
   const MealsTab({super.key});
@@ -18,7 +19,7 @@ class MealsTab extends StatefulWidget {
 }
 
 class _MealsTabState extends State<MealsTab> {
-  Future getMealsData() async {
+  Future fetchMealsData() async {
     const url = 'https://www.themealdb.com/api/json/v1/1/categories.php';
     var uri = Uri.parse(url);
     final response = await http.get(uri);
@@ -38,7 +39,7 @@ class _MealsTabState extends State<MealsTab> {
   @override
   void initState() {
     super.initState();
-    getMealsData();
+    fetchMealsData();
   }
 
   @override
@@ -49,57 +50,37 @@ class _MealsTabState extends State<MealsTab> {
               color: Colors.red.shade700,
             ),
           )
-        : GridView.builder(
+        : MyGridViewBuilder(
             itemCount: mealsList.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, mainAxisExtent: 195),
-            itemBuilder: (context, mealsIndex) {
+            itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(10),
                 child: MyCard(
-                  elevation: 6,
-                  cardTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EachFoodDetailsScreen(
-                            isFoodInApi: true,
-                            categoriesFoodItem: mealsList[mealsIndex],
+                    elevation: 6,
+                    cardTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EachFoodDetailsScreen(
+                              isFoodInApi: true,
+                              categoriesFoodItem: mealsList[index],
+                            ),
+                          ));
+                    },
+                    contentWidget: FoodDisplayTile(
+                        foodImage: Image.network(
+                            mealsList[index].strCategoryThumb.toString()),
+                        foodName: mealsList[index].strCategory,
+                        bottomWidget: Text(
+                          "Meal # ${mealsList[index].idCategory}",
+                          textScaleFactor: 1,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 16.5,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ));
-                  },
-                  contentWidget: Column(
-                    children: [
-                      const MySizedBox(heightRatio: 0.02),
-                      Expanded(
-                        flex: 0,
-                        child: SizedBox(
-                          height: 90,
-                          width: 105,
-                          child: Image.network(
-                            mealsList[mealsIndex].strCategoryThumb.toString(),
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        mealsList[mealsIndex].strCategory.toString(),
-                        style: const TextStyle(
-                          fontSize: 19.5,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "Meal # ${mealsList[mealsIndex].idCategory ?? ""}",
-                        style: const TextStyle(
-                          fontSize: 17.5,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                        ))),
               );
             },
           );

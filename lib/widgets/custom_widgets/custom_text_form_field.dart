@@ -18,6 +18,9 @@ class MyTextFormField extends StatelessWidget {
   final bool haveCard;
   final Color? textColor;
   final FormFieldValidator<String>? validator;
+  final TextStyle? labelStyle;
+  final TextStyle? hintStyle;
+  final TextStyle? floatingLabelStyle;
   const MyTextFormField({
     super.key,
     this.labelText,
@@ -37,6 +40,9 @@ class MyTextFormField extends StatelessWidget {
     this.haveCard = false,
     this.textColor,
     this.validator,
+    this.labelStyle,
+    this.hintStyle,
+    this.floatingLabelStyle,
   });
 
   @override
@@ -71,7 +77,7 @@ class MyTextFormField extends StatelessWidget {
                     prefixIcon: prefixIcon,
                     counterText: '',
                     hintText: hintText ?? '',
-                    hintStyle:
+                    hintStyle: hintStyle ??
                         const TextStyle(color: Colors.white54, fontSize: 13),
                     suffixIcon: Padding(
                       padding: const EdgeInsets.only(top: 18.0),
@@ -98,12 +104,16 @@ class MyTextFormField extends StatelessWidget {
                     focusedErrorBorder: errorBorder ??
                         const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.red)),
-                    labelStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: MediaQuery.textScaleFactorOf(context) * 16),
-                    floatingLabelStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: MediaQuery.textScaleFactorOf(context) * 16),
+                    labelStyle: labelStyle ??
+                        TextStyle(
+                            color: Colors.white,
+                            fontSize:
+                                MediaQuery.textScaleFactorOf(context) * 16),
+                    floatingLabelStyle: floatingLabelStyle ??
+                        TextStyle(
+                            color: Colors.white,
+                            fontSize:
+                                MediaQuery.textScaleFactorOf(context) * 16),
                     labelText: labelText ?? ""),
               ),
             )
@@ -127,7 +137,7 @@ class MyTextFormField extends StatelessWidget {
                   prefixIcon: prefixIcon,
                   counterText: '',
                   hintText: hintText ?? '',
-                  hintStyle:
+                  hintStyle: hintStyle ??
                       const TextStyle(color: Colors.white54, fontSize: 13),
                   suffixIcon: Padding(
                     padding: const EdgeInsets.only(top: 18.0),
@@ -155,12 +165,14 @@ class MyTextFormField extends StatelessWidget {
                   focusedErrorBorder: errorBorder ??
                       const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.red)),
-                  labelStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: MediaQuery.textScaleFactorOf(context) * 16),
-                  floatingLabelStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: MediaQuery.textScaleFactorOf(context) * 16),
+                  labelStyle: labelStyle ??
+                      TextStyle(
+                          color: Colors.white,
+                          fontSize: MediaQuery.textScaleFactorOf(context) * 16),
+                  floatingLabelStyle: floatingLabelStyle ??
+                      TextStyle(
+                          color: Colors.white,
+                          fontSize: MediaQuery.textScaleFactorOf(context) * 16),
                   labelText: labelText ?? ""),
             ),
     );

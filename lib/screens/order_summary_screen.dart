@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/models/custom_models/cart_item.dart';
-import 'package:food_ordering_app/screens/each_food_details_screen.dart';
-import 'package:food_ordering_app/utilities/values.dart';
+import 'package:food_ordering_app/utilities/helpers.dart';
 
 import '../models/api_models/meals_model.dart';
 import '../models/custom_models/popular_food.dart';
@@ -18,6 +17,9 @@ class OrderSummaryScreen extends StatefulWidget {
 }
 
 class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
+  final _deliveryFee = 85;
+  // Can change on order increasing
+
   PopularFoodModel? foodItem;
   Categories? foodItem2;
 
@@ -73,37 +75,27 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                             return SizedBox(
                               height: 40,
                               child: ListTile(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            EachFoodDetailsScreen(
-                                                isFoodInApi: false,
-                                                foodCustomItem:
-                                                    cartItems[index].food),
-                                      ));
-                                },
                                 title: Text(cartItems[index].food!.foodName),
                                 subtitle: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Total items:${cartItems[index].food!.foodQuantity}",
-                                      style: const TextStyle(
+                                    const Text(
+                                      "Total items: ",
+                                      style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 12),
                                     ),
                                     Text(
-                                      {cartItems[index].food!.foodQuantity}
+                                      cartItems[index]
+                                          .food!
+                                          .foodQuantity
                                           .toString(),
                                       style: const TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
                                 titleTextStyle: const TextStyle(
-                                  fontSize: 18,
-                                ),
+                                    fontSize: 18, color: Colors.black),
                                 leading: Container(
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
@@ -129,24 +121,32 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                         children: [
                           const Text(
                             'Sub total',
-                            style: TextStyle(fontSize: 18),
+                            textScaleFactor: 1,
+                            maxLines: 1,
+                            style: TextStyle(fontSize: 17),
                           ),
                           Text(
-                            "Rs $totalPrice",
+                            "Rs ${calculateTotalPrice(cartItems)}",
+                            textScaleFactor: 1,
+                            maxLines: 1,
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Delivery Fee',
-                            style: TextStyle(fontSize: 18),
+                            textScaleFactor: 1,
+                            maxLines: 1,
+                            style: TextStyle(fontSize: 17),
                           ),
                           Text(
-                            "Rs 135",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            "Rs $_deliveryFee",
+                            textScaleFactor: 1,
+                            maxLines: 1,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
                       )

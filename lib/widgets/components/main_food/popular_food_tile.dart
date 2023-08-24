@@ -77,7 +77,7 @@ class _PopularFoodTileState extends State<PopularFoodTile> {
                     MaterialPageRoute(
                       builder: (context) => EachFoodDetailsScreen(
                           isFoodInApi: false,
-                          foodCustomItem: popularFoodList[index]),
+                          popularFoodItem: popularFoodList[index]),
                     ));
               },
               contentWidget: Column(

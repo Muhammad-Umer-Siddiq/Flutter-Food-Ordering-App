@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/screens/splash.dart';
+import 'package:food_ordering_app/screens/full_menu_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red.shade700),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: const FullMenuScreen(),
     );
   }
 }

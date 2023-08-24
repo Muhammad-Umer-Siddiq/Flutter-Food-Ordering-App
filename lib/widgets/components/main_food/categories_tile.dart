@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/custom_models/category_food.dart';
+import '../../../screens/full_menu_screen.dart';
 import '../../custom_widgets/custom_card_widget.dart';
 
 class CategoriesTile extends StatelessWidget {
@@ -20,7 +21,13 @@ class CategoriesTile extends StatelessWidget {
           return Padding(
               padding: const EdgeInsets.all(4),
               child: MyCard(
-                cardTap: () {},
+                cardTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FullMenuScreen(),
+                      ));
+                },
                 elevation: 5,
                 contentWidget: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

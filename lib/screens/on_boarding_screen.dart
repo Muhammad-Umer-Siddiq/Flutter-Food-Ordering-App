@@ -78,7 +78,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     children: List.generate(
                         3,
                         (containerIndex) => Container(
-                              width: 15,
+                              width: _currentPageNo == containerIndex ? 19 : 15,
                               height: 15,
                               decoration: BoxDecoration(
                                   color: _currentPageNo == containerIndex

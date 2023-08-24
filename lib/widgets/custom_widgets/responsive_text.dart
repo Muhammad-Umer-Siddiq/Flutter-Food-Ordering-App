@@ -4,7 +4,6 @@ class MyResponsiveText extends StatelessWidget {
   final String data;
   final double scaleFactor; // Adjust it accordingly
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final TextOverflow? overflow;
   final TextAlign? textAlign;
@@ -14,7 +13,6 @@ class MyResponsiveText extends StatelessWidget {
     super.key,
     this.scaleFactor = 0.025,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.overflow,
     this.textAlign,
