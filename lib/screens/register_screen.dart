@@ -83,11 +83,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                 ),
                 const MySizedBox(),
-                const MyTextFormField(
+                MyTextFormField(
                   labelText: 'Phone Number',
                   keyboardType: TextInputType.phone,
                   maxLength: 11,
                   hintText: '03XXXXXXXX3',
+                  controller: phoneControllerR,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Field required for delivery purposes';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                const MySizedBox(),
+                MyTextFormField(
+                  labelText: 'Street Address',
+                  keyboardType: TextInputType.streetAddress,
+                  hintText: '03XXXXXXXX3',
+                  controller: streetControllerR,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Field required for delivery purposes';
+                    } else {
+                      return null;
+                    }
+                  },
                 ),
                 const MySizedBox(),
                 MyTextFormField(

@@ -37,8 +37,8 @@ class MyCard extends StatelessWidget {
       onLongPress: cardLongPress,
       onTap: cardTap,
       child: Card(
-        surfaceTintColor: surfaceTintColor,
-        shadowColor: shadowColor,
+        surfaceTintColor: surfaceTintColor ?? Colors.white,
+        shadowColor: shadowColor ?? Colors.black87,
         color: cardColor ?? Colors.white,
         shape: OutlineInputBorder(
             borderRadius:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/models/custom_models/cart_item.dart';
 
+import '../../../models/custom_models/cart_item.dart';
 import '../../../screens/cart_screen.dart';
 import '../../../screens/each_food_details_screen.dart';
 import '../../../utilities/lists.dart';
@@ -17,7 +17,7 @@ class _PopularFoodTileState extends State<PopularFoodTile> {
   @override
   Widget build(BuildContext context) {
     // To show alert dialog box when user clicks on plus button to add food item
-    void _showDialog() {
+    void showDialogBox() {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -121,7 +121,7 @@ class _PopularFoodTileState extends State<PopularFoodTile> {
                               popularFoodList[index].foodQuantity++;
                             });
 
-                            _showDialog();
+                            showDialogBox();
                             addToCart(popularFoodList[index]);
                           },
                           child: Container(

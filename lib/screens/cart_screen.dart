@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:food_ordering_app/models/custom_models/cart_item.dart';
-import 'package:food_ordering_app/screens/calculator_screen.dart';
-import 'package:food_ordering_app/screens/full_menu_screen.dart';
-import 'package:food_ordering_app/widgets/custom_widgets/responsive_text.dart';
+import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '../models/custom_models/cart_item.dart';
 import '../widgets/custom_widgets/custom_card_widget.dart';
 import '../widgets/custom_widgets/custom_elevated_button.dart';
+import '../widgets/custom_widgets/responsive_text.dart';
 import 'delivery_address_screen.dart';
+import 'full_menu_screen.dart';
 
 class CartScreen extends StatefulWidget {
   final List<CartItem> cartItems;
@@ -17,6 +19,93 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  void _showDialogAndroid() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text(
+            'Cart is Empty',
+            textScaleFactor: 1,
+            textAlign: TextAlign.center,
+          ),
+          titleTextStyle: const TextStyle(
+              fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold),
+          backgroundColor: Colors.white,
+          content: const Text(
+            "Add food items to proceed",
+            textScaleFactor: 1,
+            textAlign: TextAlign.center,
+          ),
+          contentTextStyle: const TextStyle(
+            fontSize: 17,
+            color: Colors.black,
+          ),
+          elevation: 10,
+          actionsOverflowButtonSpacing: 20,
+          actionsAlignment: MainAxisAlignment.center,
+          actions: [
+            SizedBox(
+              width: 150,
+              child: TextButton(
+                  style: TextButton.styleFrom(backgroundColor: Colors.red),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    "Okay",
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 1,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(fontSize: 19, color: Colors.white),
+                  )),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  void _showDialogIOS() {
+    showDialog(
+      context: context,
+      builder: (context) => CupertinoAlertDialog(
+        title: const Text('Cart is Empty',
+            textScaleFactor: 1,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 22,
+                color: Colors.black,
+                fontWeight: FontWeight.bold)),
+        actions: [
+          SizedBox(
+            width: 150,
+            child: TextButton(
+                style: TextButton.styleFrom(backgroundColor: Colors.red),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  "Okay",
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 19, color: Colors.white),
+                )),
+          )
+        ],
+        content: const Text("Add food items to proceed",
+            textScaleFactor: 1,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 17,
+              color: Colors.black,
+            )),
+      ),
+    );
+  }
+
   int calculateTotalPrice(List<CartItem> cartItems) {
     int totalPrice = 0;
 
@@ -108,9 +197,10 @@ class _CartScreenState extends State<CartScreen> {
           // displaying total prices & checkout button
           Expanded(
               child: MyCard(
-            elevation: 20,
+            elevation: 25,
             borderCurve: 22,
-            containerHeight: MediaQuery.sizeOf(context).width * 1,
+            containerHeight: MediaQuery.sizeOf(context).height * 1,
+            containerWidth: MediaQuery.sizeOf(context).width * 1,
             contentWidget: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -145,33 +235,6 @@ class _CartScreenState extends State<CartScreen> {
                     )
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    const Text(
-                      'Not sure on total price? ',
-                      textScaleFactor: 1,
-                      maxLines: 1,
-                      style: TextStyle(fontSize: 17, color: Colors.black87),
-                    ),
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const CalculatorScreen(),
-                              ));
-                        },
-                        child: Text(
-                          'Calculate',
-                          textScaleFactor: 1,
-                          maxLines: 1,
-                          style: TextStyle(
-                              fontSize: 17, color: Colors.red.shade800),
-                        ))
-                  ],
-                ),
                 Flexible(
                   child: MyElevatedButton(
                     elevation: 0,
@@ -193,11 +256,18 @@ class _CartScreenState extends State<CartScreen> {
                     surfaceTintColor: Colors.red,
                     buttonText: "CheckOut",
                     buttonPress: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DeliveryAddressScreen(),
-                          ));
+                      if (cartItems.isEmpty) {
+                        Platform.isIOS
+                            ? _showDialogIOS()
+                            : _showDialogAndroid();
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const DeliveryAddressScreen(),
+                            ));
+                      }
                     },
                   ),
                 ),

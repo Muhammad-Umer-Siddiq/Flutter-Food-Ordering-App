@@ -3,8 +3,10 @@ import 'dart:io' show Platform;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../utilities/consts.dart';
+import '../utilities/helpers.dart';
 import '../utilities/values.dart';
-import '../widgets/components/delivery_process/custom_title_with_text_field.dart';
+import '../widgets/components/delivery_process/title_text_field_tile.dart';
 import '../widgets/custom_widgets/custom_elevated_button.dart';
 import '../widgets/custom_widgets/custom_sized_box.dart';
 import 'order_summary_screen.dart';
@@ -17,22 +19,6 @@ class DeliveryAddressScreen extends StatefulWidget {
 }
 
 class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
-  final TextEditingController _cityController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-
-  bool areFieldsEmpty() {
-    if (_nameController.text.isEmpty ||
-        _addressController.text.isEmpty ||
-        _cityController.text.isEmpty ||
-        _phoneController.text.isEmpty) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   void _showDialogAndroid() {
     showDialog(
       context: context,
@@ -173,21 +159,21 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
                 const MySizedBox(heightRatio: 0.025),
                 TitleTextField(
                   title: 'Name',
-                  controller: _nameController,
+                  controller: nameControllerD,
                 ),
                 TitleTextField(
                   title: 'Street Address',
-                  controller: _addressController,
+                  controller: streetControllerD,
                   keyboard: TextInputType.streetAddress,
                 ),
                 TitleTextField(
                   title: 'City',
-                  controller: _cityController,
+                  controller: cityControllerD,
                 ),
                 TitleTextField(
                   title: 'Phone',
                   maxLength: 11,
-                  controller: _phoneController,
+                  controller: phoneControllerD,
                   keyboard: TextInputType.phone,
                 ),
                 const MySizedBox(heightRatio: 0.05),

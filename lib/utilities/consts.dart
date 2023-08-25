@@ -13,9 +13,17 @@ final TextEditingController emailControllerS = TextEditingController();
 final TextEditingController passwordControllerS = TextEditingController();
 
 // For register in screen
-final TextEditingController passwordControllerR = TextEditingController();
-final TextEditingController passwordControllerRR = TextEditingController();
 final TextEditingController nameControllerR = TextEditingController();
 final TextEditingController emailControllerR = TextEditingController();
+final TextEditingController phoneControllerR = TextEditingController();
+final TextEditingController streetControllerR = TextEditingController();
+final TextEditingController passwordControllerR = TextEditingController();
+final TextEditingController passwordControllerRR = TextEditingController();
+
+// For delivery address screen
+final TextEditingController nameControllerD = TextEditingController();
+final TextEditingController streetControllerD = TextEditingController();
+final TextEditingController cityControllerD = TextEditingController();
+final TextEditingController phoneControllerD = TextEditingController();
 
 const String appName = 'Order @ Eat';

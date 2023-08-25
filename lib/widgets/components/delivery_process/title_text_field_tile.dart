@@ -33,6 +33,7 @@ class TitleTextField extends StatelessWidget {
           ),
         ),
         MyTextFormField(
+          cursorColor: Colors.black26,
           maxLength: maxLength,
           haveCard: true,
           keyboardType: keyboard ?? TextInputType.name,

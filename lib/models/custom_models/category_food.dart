@@ -8,13 +8,15 @@ List<CategoryFoodModel> foodCategories = [
   const CategoryFoodModel(
       iconURL: "assets/icons/pizza_icon.png", iconName: "Pizza"),
   const CategoryFoodModel(
+      iconURL: 'assets/icons/chicken-leg.png', iconName: 'Chicken'),
+  const CategoryFoodModel(
       iconURL: "assets/icons/pasta_icon.png", iconName: "Chinese"),
   const CategoryFoodModel(
       iconURL: "assets/icons/biryani_icon.png", iconName: "Biryani"),
   const CategoryFoodModel(
       iconURL: "assets/icons/hamburger_icon.png", iconName: "Burger"),
   const CategoryFoodModel(
-      iconURL: "assets/icons/cold_drink_icon.png", iconName: "Drink"),
+      iconURL: "assets/icons/drinks_icon.png", iconName: "Drink"),
   const CategoryFoodModel(
       iconURL: "assets/icons/french_fries_icon.png", iconName: "Fries"),
   const CategoryFoodModel(

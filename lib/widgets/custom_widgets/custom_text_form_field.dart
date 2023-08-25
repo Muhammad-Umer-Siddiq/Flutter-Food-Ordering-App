@@ -21,29 +21,34 @@ class MyTextFormField extends StatelessWidget {
   final TextStyle? labelStyle;
   final TextStyle? hintStyle;
   final TextStyle? floatingLabelStyle;
-  const MyTextFormField({
-    super.key,
-    this.labelText,
-    this.keyboardType,
-    this.suffixIcon,
-    this.maxLength,
-    this.hintText,
-    this.obscureText,
-    this.controller,
-    this.fieldWidth,
-    this.simpleBorder,
-    this.errorBorder,
-    this.enabled,
-    this.prefixIcon,
-    this.elevation,
-    this.fieldHeight,
-    this.haveCard = false,
-    this.textColor,
-    this.validator,
-    this.labelStyle,
-    this.hintStyle,
-    this.floatingLabelStyle,
-  });
+  final Color? cursorColor;
+  final bool? readOnly;
+  final VoidCallback? onTapField;
+  const MyTextFormField(
+      {super.key,
+      this.labelText,
+      this.keyboardType,
+      this.suffixIcon,
+      this.maxLength,
+      this.hintText,
+      this.obscureText,
+      this.controller,
+      this.fieldWidth,
+      this.simpleBorder,
+      this.errorBorder,
+      this.enabled,
+      this.prefixIcon,
+      this.elevation,
+      this.fieldHeight,
+      this.haveCard = false,
+      this.textColor,
+      this.validator,
+      this.labelStyle,
+      this.hintStyle,
+      this.floatingLabelStyle,
+      this.cursorColor,
+      this.onTapField,
+      this.readOnly});
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +62,14 @@ class MyTextFormField extends StatelessWidget {
               shadowColor: Colors.white,
               elevation: elevation ?? 0,
               child: TextFormField(
+                readOnly: readOnly ?? false,
+                onTap: onTapField,
                 controller: controller,
                 enabled: enabled ?? true,
                 obscureText: obscureText ?? false,
                 obscuringCharacter: '*',
-                cursorColor: Colors.white,
-                maxLength: maxLength ?? 100,
+                cursorColor: cursorColor ?? Colors.white,
+                maxLength: maxLength ?? 120,
                 mouseCursor: MaterialStateMouseCursor.clickable,
                 cursorHeight: 21,
                 textAlignVertical: TextAlignVertical.center,
@@ -118,12 +125,14 @@ class MyTextFormField extends StatelessWidget {
               ),
             )
           : TextFormField(
+              readOnly: readOnly ?? false,
+              onTap: onTapField,
               controller: controller,
               enabled: enabled ?? true,
               obscureText: obscureText ?? false,
               obscuringCharacter: '*',
-              cursorColor: Colors.white,
-              maxLength: maxLength ?? 100,
+              cursorColor: cursorColor ?? Colors.white,
+              maxLength: maxLength ?? 120,
               cursorHeight: 21,
               textAlignVertical: TextAlignVertical.center,
               validator: validator,

@@ -1,26 +1,24 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:http/http.dart' as http;
 
-import '../../../models/api_models/drinks_model.dart';
+import '../../../models/api_models/chicken_meals_model.dart';
 import '../../../utilities/lists.dart';
 import '../../custom_widgets/custom_card_widget.dart';
 import '../../custom_widgets/custom_grid_view_builder.dart';
 import 'food_display_tile.dart';
 
-class DrinksTab extends StatefulWidget {
-  const DrinksTab({super.key});
+class ChickenMealTab extends StatefulWidget {
+  const ChickenMealTab({super.key});
 
   @override
-  State<DrinksTab> createState() => _DrinksTabState();
+  State<ChickenMealTab> createState() => _ChickenMealTabState();
 }
 
-class _DrinksTabState extends State<DrinksTab> {
+class _ChickenMealTabState extends State<ChickenMealTab> {
   void _showDialogAndroid() {
     showDialog(
       context: context,
@@ -109,41 +107,37 @@ class _DrinksTabState extends State<DrinksTab> {
     );
   }
 
-  Future fetchDrinksData() async {
+  Future fetchChickenMealsData() async {
     const url =
-        'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Vodka';
+        'https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast';
     var uri = Uri.parse(url);
     final response = await http.get(uri);
-    log(response.statusCode.toString());
-
     if (response.statusCode == 200 || response.statusCode == 201) {
       var data = jsonDecode(response.body);
-      var drinksJson = data['drinks'] as List;
+      var chickenJson = data['meals'] as List;
       setState(() {
-        drinksList = drinksJson.map((e) => Drinks.fromJson(e)).toList();
+        chickenMealsList = chickenJson.map((e) => Meals.fromJson(e)).toList();
       });
-      return drinksList;
-    } else {
-      log(response.body.toString());
-    }
+      return chickenMealsList;
+    } else {}
   }
 
   @override
   void initState() {
-    fetchDrinksData();
     super.initState();
+    fetchChickenMealsData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return drinksList.isEmpty
+    return chickenMealsList.isEmpty
         ? Center(
             child: CircularProgressIndicator(
               color: Colors.red.shade700,
             ),
           )
         : MyGridViewBuilder(
-            itemCount: drinksList.length,
+            itemCount: chickenMealsList.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(10),
@@ -154,10 +148,10 @@ class _DrinksTabState extends State<DrinksTab> {
                     },
                     contentWidget: FoodDisplayTile(
                       foodImage: Image.network(
-                          drinksList[index].strDrinkThumb.toString()),
-                      foodName: drinksList[index].strDrink,
+                          chickenMealsList[index].strMealThumb.toString()),
+                      foodName: chickenMealsList[index].strMeal,
                       bottomWidget: Text(
-                        "Meal # ${drinksList[index].idDrink ?? ""}",
+                        "Meal # ${chickenMealsList[index].idMeal ?? ""}",
                         textScaleFactor: 1,
                         textAlign: TextAlign.center,
                         style: const TextStyle(

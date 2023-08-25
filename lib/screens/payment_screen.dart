@@ -30,7 +30,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(14),
+        padding: const EdgeInsets.all(11),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +43,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 heightRatio: 0.038,
                 child: HeaderText(
                   'Choose Your Payment Method',
-                  fontSize: 24,
+                  fontSize: 22,
                 ),
               ),
             ),

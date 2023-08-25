@@ -4,6 +4,7 @@ class PopularFoodModel {
   final int foodPrice;
   final String foodDescription;
   final String foodExtras;
+  bool extrasCheck;
   int foodQuantity;
   PopularFoodModel({
     required this.foodImageURL,
@@ -12,5 +13,6 @@ class PopularFoodModel {
     required this.foodDescription,
     required this.foodExtras,
     required this.foodQuantity,
+    required this.extrasCheck,
   });
 }

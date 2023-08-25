@@ -9,5 +9,3 @@ double buttonSize = 92;
 int totalButtons = 4;
 String userQuestion = '';
 String userAnswer = '';
-
-// initial for every order

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/utilities/helpers.dart';
 
+import '../utilities/helpers.dart';
 import '../widgets/components/main_food/header_text.dart';
 import '../widgets/custom_widgets/custom_elevated_button.dart';
 import '../widgets/custom_widgets/custom_sized_box.dart';
@@ -37,6 +37,7 @@ class _PaymentEnterDetailsScreenState extends State<PaymentEnterDetailsScreen> {
             const MySizedBox(heightRatio: 0.15),
             const MyTextFormField(
               labelText: 'Card Details',
+              textColor: Colors.black,
               fieldWidth: 0.85,
               floatingLabelStyle: TextStyle(color: Colors.black),
               labelStyle: TextStyle(color: Colors.black),
@@ -45,6 +46,7 @@ class _PaymentEnterDetailsScreenState extends State<PaymentEnterDetailsScreen> {
             ),
             const MySizedBox(heightRatio: 0.05),
             const MyTextFormField(
+              textColor: Colors.black,
               fieldWidth: 0.85,
               labelText: 'CVV',
               floatingLabelStyle: TextStyle(color: Colors.black),

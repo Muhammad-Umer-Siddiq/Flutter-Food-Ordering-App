@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/widgets/components/main_food/food_display_tile.dart';
-import 'package:food_ordering_app/widgets/custom_widgets/custom_grid_view_builder.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../models/api_models/meals_model.dart';
 import '../../../screens/each_food_details_screen.dart';
 import '../../../utilities/lists.dart';
 import '../../custom_widgets/custom_card_widget.dart';
+import '../../custom_widgets/custom_grid_view_builder.dart';
+import 'food_display_tile.dart';
 
 class MealsTab extends StatefulWidget {
   const MealsTab({super.key});
@@ -28,9 +28,10 @@ class _MealsTabState extends State<MealsTab> {
       var mealsJson = data['categories'] as List;
 
       setState(() {
-        mealsList = mealsJson.map((e) => Categories.fromJson(e)).toList();
+        regularMealsList =
+            mealsJson.map((e) => Categories.fromJson(e)).toList();
       });
-      return mealsList;
+      return regularMealsList;
     } else {
       log(response.body);
     }
@@ -44,14 +45,14 @@ class _MealsTabState extends State<MealsTab> {
 
   @override
   Widget build(BuildContext context) {
-    return mealsList.isEmpty
+    return regularMealsList.isEmpty
         ? Center(
             child: CircularProgressIndicator(
               color: Colors.red.shade700,
             ),
           )
         : MyGridViewBuilder(
-            itemCount: mealsList.length,
+            itemCount: regularMealsList.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(10),
@@ -63,16 +64,17 @@ class _MealsTabState extends State<MealsTab> {
                           MaterialPageRoute(
                             builder: (context) => EachFoodDetailsScreen(
                               isFoodInApi: true,
-                              categoriesFoodItem: mealsList[index],
+                              categoriesFoodItem: regularMealsList[index],
                             ),
                           ));
                     },
                     contentWidget: FoodDisplayTile(
-                        foodImage: Image.network(
-                            mealsList[index].strCategoryThumb.toString()),
-                        foodName: mealsList[index].strCategory,
+                        foodImage: Image.network(regularMealsList[index]
+                            .strCategoryThumb
+                            .toString()),
+                        foodName: regularMealsList[index].strCategory,
                         bottomWidget: Text(
-                          "Meal # ${mealsList[index].idCategory}",
+                          "Meal # ${regularMealsList[index].idCategory}",
                           textScaleFactor: 1,
                           maxLines: 1,
                           textAlign: TextAlign.center,

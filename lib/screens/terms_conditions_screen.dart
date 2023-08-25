@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/screens/on_boarding_screen.dart';
-
 import '../utilities/consts.dart';
 import '../widgets/components/starting screens/background_tile.dart';
 import '../widgets/custom_widgets/custom_elevated_button.dart';
 import '../widgets/custom_widgets/custom_sized_box.dart';
+import 'on_boarding_screen.dart';
 import 'privacy_policy_screen.dart';
 
 // Fully responsive

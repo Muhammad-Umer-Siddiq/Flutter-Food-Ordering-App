@@ -2,17 +2,15 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/screens/full_menu_screen.dart';
 
 import '../models/api_models/meals_model.dart';
 import '../models/custom_models/cart_item.dart';
 import '../models/custom_models/popular_food.dart';
-import '../utilities/helpers.dart';
-import '../utilities/values.dart';
 import '../widgets/custom_widgets/custom_card_widget.dart';
 import '../widgets/custom_widgets/custom_elevated_button.dart';
 import '../widgets/custom_widgets/custom_sized_box.dart';
 import 'cart_screen.dart';
+import 'full_menu_screen.dart';
 
 class EachFoodDetailsScreen extends StatefulWidget {
   final PopularFoodModel? popularFoodItem; // for static data
@@ -142,6 +140,13 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
             )),
       ),
     );
+  }
+
+  void _checkExtras() {
+    setState(() {
+      widget.popularFoodItem!.extrasCheck =
+          !widget.popularFoodItem!.extrasCheck;
+    });
   }
 
   @override
@@ -390,11 +395,9 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                             Row(
                               children: [
                                 Checkbox(
-                                  value: isExtraChecked,
+                                  value: widget.popularFoodItem!.extrasCheck,
                                   onChanged: (value) {
-                                    setState(() {
-                                      checkExtras();
-                                    });
+                                    _checkExtras();
                                   },
                                 ),
                                 Text(

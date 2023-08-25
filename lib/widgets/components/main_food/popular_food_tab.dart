@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/utilities/lists.dart';
-import 'package:food_ordering_app/widgets/components/main_food/food_display_tile.dart';
-import 'package:food_ordering_app/widgets/custom_widgets/custom_grid_view_builder.dart';
 
 import '../../../screens/each_food_details_screen.dart';
+import '../../../utilities/lists.dart';
 import '../../custom_widgets/custom_card_widget.dart';
+import '../../custom_widgets/custom_grid_view_builder.dart';
+import 'food_display_tile.dart';
 
 class PopularFoodTab extends StatefulWidget {
   const PopularFoodTab({super.key});
