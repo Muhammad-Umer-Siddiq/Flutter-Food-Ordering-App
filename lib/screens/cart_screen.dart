@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../models/custom_models/cart_item.dart';
-import '../widgets/custom_widgets/custom_card_widget.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/responsive_text.dart';
+import '../models/custom models/cart_item.dart';
+import '../utilities/helpers.dart';
+import '../utilities/lists.dart';
+import '../widgets/custom widgets/card_widget.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/responsive_text.dart';
 import 'delivery_address_screen.dart';
 import 'full_menu_screen.dart';
 
@@ -106,21 +108,9 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  int calculateTotalPrice(List<CartItem> cartItems) {
-    int totalPrice = 0;
-
-    for (CartItem cartItem in cartItems) {
-      int totalEachFoodPrice =
-          (cartItem.food!.foodQuantity) * (cartItem.food!.foodPrice);
-      totalPrice += totalEachFoodPrice;
-    }
-
-    return totalPrice;
-  }
-
   @override
   void setState(VoidCallback fn) {
-    calculateTotalPrice(cartItems);
+    CartItemsHelpers().calculateTotalPrice(cartItems);
 
     super.setState(fn);
   }
@@ -219,7 +209,7 @@ class _CartScreenState extends State<CartScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Rs. ${calculateTotalPrice(cartItems)}",
+                          "Rs. ${CartItemsHelpers().calculateTotalPrice(cartItems)}",
                           textAlign: TextAlign.left,
                           style: const TextStyle(
                               fontSize: 22, fontWeight: FontWeight.bold),

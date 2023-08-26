@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../utilities/helpers.dart';
-import '../widgets/components/main_food/header_text.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
-import '../widgets/custom_widgets/custom_text_form_field.dart';
+import '../widgets/components/main food/header_text.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/sized_box.dart';
+import '../widgets/custom widgets/text_form_field.dart';
 import 'order_placed_screen.dart';
 
 // Fully responsive

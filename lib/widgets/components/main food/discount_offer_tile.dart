@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../custom_widgets/custom_elevated_button.dart';
-import '../../custom_widgets/custom_sized_box.dart';
+import '../../custom widgets/elevated_button.dart';
+import '../../custom widgets/sized_box.dart';
 
 class DiscountOfferTile extends StatefulWidget {
   const DiscountOfferTile({super.key});
@@ -62,7 +62,7 @@ class _DiscountOfferTileState extends State<DiscountOfferTile> {
               minHeight: 33,
               buttonAlignment:
                   width > 1000 ? Alignment.center : Alignment.bottomRight,
-              textSizeRatio: height > 450 ? 17 : 15,
+              fontSize: height > 450 ? 17 : 15,
               buttonText: "Order Now",
               buttonPress: () {},
               buttonHeightRatio: 0.05,

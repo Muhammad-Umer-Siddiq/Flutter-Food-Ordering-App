@@ -1,11 +1,11 @@
-import 'package:food_ordering_app/models/api_models/drinks_model.dart';
-
-import '../models/api_models/chicken_meals_model.dart';
-import '../models/api_models/meals_model.dart';
-import '../models/custom_models/payment_model.dart';
-import '../models/custom_models/popular_food.dart';
-
 // dynamic data items
+import '../models/api models/chicken_meals_model.dart';
+import '../models/api models/drinks_model.dart';
+import '../models/api models/meals_model.dart';
+import '../models/custom models/cart_item.dart';
+import '../models/custom models/payment_model.dart';
+import '../models/custom models/popular_food.dart';
+
 List<Categories> regularMealsList = [];
 List<Drinks> drinksList = [];
 List<Meals> chickenMealsList = [];
@@ -86,29 +86,6 @@ List<PopularFoodModel> popularFoodList = [
           "Dive into cheesy goodness with our classic Cheese Burger! Picture this: a juicy, perfectly grilled beef patty topped with melty, gooey cheese. The buns are soft and toasted just right for that extra crunch. Each bite is a harmonious symphony of flavors that will make your taste buds sing. Treat yourself to the ultimate comfort food experience with our delectable Cheese Burger - a true crowd-pleaser!"),
 ];
 
-final List<String> screenButtons = [
-  'C',
-  'DEL',
-  '÷',
-  '×',
-  '7',
-  '8',
-  '9',
-  '+',
-  '4',
-  '5',
-  '6',
-  '-',
-  '1',
-  '2',
-  '3',
-  '.',
-  '0',
-  '=',
-  '(',
-  ')'
-];
-
 List<PaymentTypeModel> paymentTypes = [
   PaymentTypeModel(
       paymentIconURL: 'assets/icons/easypaisa_bg.png',
@@ -121,3 +98,5 @@ List<PaymentTypeModel> paymentTypes = [
   PaymentTypeModel(
       paymentIconURL: 'assets/icons/hbl_bg.png', paymentIsSelected: false),
 ];
+
+List<CartItem> cartItems = [];

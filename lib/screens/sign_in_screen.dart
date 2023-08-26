@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../utilities/consts.dart';
 import '../widgets/components/starting screens/background_tile.dart';
-import '../widgets/custom_widgets/custom_app_name_text.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
-import '../widgets/custom_widgets/custom_text_form_field.dart';
+import '../widgets/custom widgets/app_name_text.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/sized_box.dart';
+import '../widgets/custom widgets/text_form_field.dart';
 import 'main_food_screen.dart';
 import 'register_screen.dart';
 
@@ -89,7 +89,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 const MySizedBox(heightRatio: 0.06),
                 MyElevatedButton(
-                  textSizeRatio: 21,
+                  fontSize: 21,
                   buttonText: "Sign in",
                   buttonPress: () => Navigator.push(
                       context,

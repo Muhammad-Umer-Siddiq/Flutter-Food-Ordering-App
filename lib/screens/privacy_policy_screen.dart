@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../utilities/consts.dart';
 import '../widgets/components/starting screens/background_tile.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
+import '../widgets/custom widgets/sized_box.dart';
 
 // Fully responsive
 // Tested on min size of 320 × 320

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/components/starting screens/background_tile.dart';
-import '../widgets/custom_widgets/custom_app_name_text.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
+import '../widgets/custom widgets/app_name_text.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/sized_box.dart';
 import 'register_screen.dart';
 import 'sign_in_screen.dart';
 
@@ -40,7 +40,7 @@ class RegisterOrSignInScreen extends StatelessWidget {
             const MySizedBox(heightRatio: 0.35),
             MyElevatedButton(
               buttonText: 'Register',
-              textSizeRatio: 22,
+              fontSize: 22,
               buttonPress: () {
                 Navigator.pushReplacement(
                     context,

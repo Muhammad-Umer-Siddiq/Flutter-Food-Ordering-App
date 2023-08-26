@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/custom_models/category_food.dart';
+import '../../../models/custom models/category_food.dart';
 import '../../../screens/full_menu_screen.dart';
-import '../../custom_widgets/custom_card_widget.dart';
+import '../../custom widgets/card_widget.dart';
 
 class CategoriesTile extends StatelessWidget {
   const CategoriesTile({super.key});

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../models/custom_models/cart_item.dart';
-import '../widgets/components/main_food/categories_tile.dart';
-import '../widgets/components/main_food/discount_offer_tile.dart';
-import '../widgets/components/main_food/header_text.dart';
-import '../widgets/components/main_food/popular_food_tile.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
-import '../widgets/custom_widgets/responsive_text.dart';
+import '../utilities/lists.dart';
+import '../widgets/components/main food/categories_tile.dart';
+import '../widgets/components/main food/discount_offer_tile.dart';
+import '../widgets/components/main food/header_text.dart';
+import '../widgets/components/main food/popular_food_tile.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/responsive_text.dart';
+import '../widgets/custom widgets/sized_box.dart';
 import 'cart_screen.dart';
 import 'full_menu_screen.dart';
 import 'privacy_policy_screen.dart';

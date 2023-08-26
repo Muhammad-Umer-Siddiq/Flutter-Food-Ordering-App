@@ -1,21 +1,37 @@
-
-import '../models/custom_models/cart_item.dart';
+import '../models/custom models/cart_item.dart';
 import 'consts.dart';
 import 'lists.dart';
 import 'values.dart';
 
 // For each food details Screen
 
-int calculateTotalPrice(List<CartItem> cartItems) {
-  int totalPrice = 0;
-  for (CartItem cartItem in cartItems) {
-    int totalEachFoodPrice =
-        (cartItem.food!.foodQuantity) * (cartItem.food!.foodPrice);
-    totalPrice += totalEachFoodPrice;
+class CartItemsHelpers {
+  int calculateTotalPrice(List<CartItem> cartItems) {
+    int totalPrice = 0;
+    for (CartItem cartItem in cartItems) {
+      int totalEachFoodPrice =
+          (cartItem.food!.foodQuantity) * (cartItem.food!.foodPrice);
+      totalPrice += totalEachFoodPrice;
+    }
+    return totalPrice;
   }
-  return totalPrice;
-}
 
+  void addToCart(dynamic food) {
+    bool itemExists = false;
+
+    for (var item in cartItems) {
+      if (item.food == food) {
+        item.quantity++;
+        itemExists = true;
+        break;
+      }
+    }
+
+    if (!itemExists) {
+      cartItems.add(CartItem(food: food));
+    }
+  }
+}
 
 bool areFieldsEmpty() {
   if (nameControllerD.text.isEmpty ||
@@ -27,9 +43,6 @@ bool areFieldsEmpty() {
     return false;
   }
 }
-
-
-
 
 class DeliveryProcessHelpers {
   // To select one payment & unselect the rest

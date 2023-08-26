@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import '../utilities/consts.dart';
 import '../utilities/helpers.dart';
 import '../utilities/values.dart';
-import '../widgets/components/delivery_process/title_text_field_tile.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
+import '../widgets/components/delivery process/title_text_field_tile.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/sized_box.dart';
 import 'order_summary_screen.dart';
 
 class DeliveryAddressScreen extends StatefulWidget {

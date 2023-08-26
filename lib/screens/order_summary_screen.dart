@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/utilities/lists.dart';
 
-import '../models/custom_models/cart_item.dart';
 import '../utilities/consts.dart';
 import '../utilities/helpers.dart';
-import '../widgets/components/delivery_process/delivery_details_tile.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
+import '../widgets/components/delivery process/delivery_details_tile.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/sized_box.dart';
 import 'cart_screen.dart';
 import 'payment_screen.dart';
 
@@ -155,7 +155,7 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                             style: TextStyle(fontSize: 16),
                           ),
                           Text(
-                            "Rs ${calculateTotalPrice(cartItems)}",
+                            "Rs ${CartItemsHelpers().calculateTotalPrice(cartItems)}",
                             textScaleFactor: 1,
                             maxLines: 1,
                             style: const TextStyle(
@@ -250,7 +250,7 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                         MyElevatedButton(
                           elevation: 0,
                           buttonWidthRatio: 0.6,
-                          textSizeRatio: width > 390 ? 19 : 15,
+                          fontSize: width > 390 ? 19 : 15,
                           buttonColor: Colors.white,
                           textCoLor: Colors.red.shade700,
                           buttonText: 'Edit Order',
@@ -267,7 +267,7 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                         const MySizedBox(heightRatio: 0.03),
                         MyElevatedButton(
                           buttonWidthRatio: 0.6,
-                          textSizeRatio: width > 390 ? 19 : 15,
+                          fontSize: width > 390 ? 19 : 15,
                           buttonText: 'Proceed To Payment',
                           buttonPress: () {
                             Navigator.pushReplacement(

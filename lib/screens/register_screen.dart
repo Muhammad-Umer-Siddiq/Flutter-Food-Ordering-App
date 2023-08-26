@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/widgets/custom_widgets/custom_sized_box.dart';
 
 import '../utilities/consts.dart';
 import '../widgets/components/starting screens/background_tile.dart';
-import '../widgets/custom_widgets/custom_app_name_text.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_text_form_field.dart';
+import '../widgets/custom widgets/app_name_text.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/sized_box.dart';
+import '../widgets/custom widgets/text_form_field.dart';
 import 'sign_in_screen.dart';
 import 'terms_conditions_screen.dart';
 
@@ -166,7 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const MySizedBox(heightRatio: 0.06),
                 MyElevatedButton(
-                    textSizeRatio: 21,
+                    fontSize: 21,
                     buttonText: "Register",
                     buttonPress: () {
                       if (_formKey.currentState!.validate()) {

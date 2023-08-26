@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../utilities/values.dart';
-import '../../custom_widgets/custom_sized_box.dart';
-import '../../custom_widgets/custom_text_form_field.dart';
+import '../../custom widgets/sized_box.dart';
+import '../../custom widgets/text_form_field.dart';
 
 class TitleTextField extends StatelessWidget {
   final String? title;

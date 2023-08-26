@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../utilities/values.dart';
-import '../widgets/components/main_food/header_text.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
+import '../widgets/components/main food/header_text.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/sized_box.dart';
 import 'main_food_screen.dart';
 
 class OrderPlacedScreen extends StatelessWidget {

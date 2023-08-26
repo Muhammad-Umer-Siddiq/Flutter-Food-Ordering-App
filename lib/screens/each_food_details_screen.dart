@@ -2,13 +2,16 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/widgets/custom%20widgets/alert_dialog_box.dart';
+import 'package:food_ordering_app/widgets/custom%20widgets/cupertino_alert_dialog.dart';
 
-import '../models/api_models/meals_model.dart';
-import '../models/custom_models/cart_item.dart';
-import '../models/custom_models/popular_food.dart';
-import '../widgets/custom_widgets/custom_card_widget.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
+import '../models/api models/meals_model.dart';
+import '../models/custom models/popular_food.dart';
+import '../utilities/helpers.dart';
+import '../utilities/lists.dart';
+import '../widgets/custom widgets/card_widget.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/sized_box.dart';
 import 'cart_screen.dart';
 import 'full_menu_screen.dart';
 
@@ -31,118 +34,85 @@ class EachFoodDetailsScreen extends StatefulWidget {
 class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
   void _showDialogAndroid() {
     showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text(
-            'Coming Soon!',
-            textScaleFactor: 1,
-            textAlign: TextAlign.center,
-          ),
-          titleTextStyle: const TextStyle(
-              fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold),
-          backgroundColor: Colors.white,
-          content: const Text(
-            "Soon you would be allow to order these food",
-            textScaleFactor: 1,
-            textAlign: TextAlign.center,
-          ),
-          contentTextStyle: const TextStyle(
-            fontSize: 17,
-            color: Colors.black,
-          ),
-          elevation: 10,
-          actionsAlignment: MainAxisAlignment.spaceBetween,
-          actions: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const FullMenuScreen(),
-                    ));
-              },
-              child: Text(
-                "View Full Menu",
-                style: TextStyle(fontSize: 17, color: Colors.red.shade900),
-              ),
-            ),
-            SizedBox(
-              width: 130,
-              child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.red),
-                  onPressed: () {
-                    Navigator.pop(context);
+        context: context,
+        builder: (context) => MyAlertDialog(
+              title: 'Coming Soon!',
+              content: "Soon you would be allow to order these food",
+              actions: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const FullMenuScreen(),
+                        ));
                   },
-                  child: const Text(
-                    "Okay",
-                    textAlign: TextAlign.center,
-                    textScaleFactor: 1,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(fontSize: 17, color: Colors.white),
-                  )),
-            )
-          ],
-        );
-      },
-    );
+                  child: Text(
+                    "View Full Menu",
+                    style: TextStyle(fontSize: 17, color: Colors.red.shade900),
+                  ),
+                ),
+                SizedBox(
+                  width: 120,
+                  child: TextButton(
+                      style: TextButton.styleFrom(backgroundColor: Colors.red),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        "Okay",
+                        textAlign: TextAlign.center,
+                        textScaleFactor: 1,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      )),
+                )
+              ],
+            ));
   }
 
   void _showDialogIOS() {
     showDialog(
-      context: context,
-      builder: (context) => CupertinoAlertDialog(
-        title: const Text('Coming Soon',
-            textScaleFactor: 1,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 22,
-                color: Colors.black,
-                fontWeight: FontWeight.bold)),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const FullMenuScreen(),
-                  ));
-            },
-            child: Text(
-              "View Full Menu",
-              style: TextStyle(fontSize: 19, color: Colors.red.shade900),
-            ),
-          ),
-          SizedBox(
-            width: 150,
-            child: TextButton(
-                style: TextButton.styleFrom(backgroundColor: Colors.red),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  "Okay",
-                  textAlign: TextAlign.center,
-                  textScaleFactor: 1,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: TextStyle(fontSize: 19, color: Colors.white),
-                )),
-          )
-        ],
-        content: const Text("Soon you would be allow to order these food",
-            textScaleFactor: 1,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 17,
-              color: Colors.black,
-            )),
-      ),
-    );
+        context: context,
+        builder: (context) => MyCupertinoAlertDialog(
+              title: 'Coming Soon',
+              content: "Soon you would be allow to order these food",
+              actions: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const FullMenuScreen(),
+                        ));
+                  },
+                  child: Text(
+                    "View Full Menu",
+                    style: TextStyle(fontSize: 19, color: Colors.red.shade900),
+                  ),
+                ),
+                SizedBox(
+                  width: 150,
+                  child: TextButton(
+                      style: TextButton.styleFrom(backgroundColor: Colors.red),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        "Okay",
+                        textAlign: TextAlign.center,
+                        textScaleFactor: 1,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 19, color: Colors.white),
+                      )),
+                )
+              ],
+            ));
   }
 
-  void _checkExtras() {
+  void _checkOrUncheck() {
     setState(() {
       widget.popularFoodItem!.extrasCheck =
           !widget.popularFoodItem!.extrasCheck;
@@ -203,25 +173,22 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                             Container(
                               width: MediaQuery.of(context).size.width * 1,
                               height: MediaQuery.of(context).size.height * 0.06,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.grey.shade200,
-                              ),
+                              color: Colors.grey.shade300,
                               alignment: Alignment.centerLeft,
                               child: const Padding(
                                 padding: EdgeInsets.only(left: 15.0),
                                 child: Text(
                                   " Add some extras",
+                                  maxLines: 1,
                                   style: TextStyle(
                                       fontSize: 20, color: Colors.black),
                                 ),
                               ),
                             ),
                             const MySizedBox(heightRatio: 0.04),
-                            const MySizedBox(),
                             MyElevatedButton(
-                              buttonColor: Colors.red.shade300,
-                              borderColor: Colors.red.shade300,
+                              buttonColor: Colors.red.shade200,
+                              borderColor: Colors.red.shade200,
                               buttonAlignment: Alignment.center,
                               buttonText: "Add to cart",
                               buttonPress: () {
@@ -242,7 +209,7 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
               height: MediaQuery.of(context).size.height * 1,
               width: MediaQuery.of(context).size.width * 1,
               child: Stack(
-                children: [
+                children: <Widget>[
                   SizedBox(
                     height: 200,
                     width: MediaQuery.of(context).size.width * 1,
@@ -377,15 +344,13 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                             Container(
                               width: MediaQuery.of(context).size.width * 1,
                               height: MediaQuery.of(context).size.height * 0.06,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.grey.shade200,
-                              ),
+                              color: Colors.grey.shade300,
                               alignment: Alignment.centerLeft,
                               child: const Padding(
                                 padding: EdgeInsets.only(left: 15.0),
                                 child: Text(
                                   " Add some extras",
+                                  maxLines: 1,
                                   style: TextStyle(
                                       fontSize: 20, color: Colors.black),
                                 ),
@@ -397,7 +362,7 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                                 Checkbox(
                                   value: widget.popularFoodItem!.extrasCheck,
                                   onChanged: (value) {
-                                    _checkExtras();
+                                    _checkOrUncheck();
                                   },
                                 ),
                                 Text(
@@ -415,12 +380,12 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                                 ),
                               ],
                             ),
-                            const MySizedBox(),
                             MyElevatedButton(
                               buttonAlignment: Alignment.center,
                               buttonText: "Add to cart",
                               buttonPress: () {
-                                addToCart(widget.popularFoodItem);
+                                CartItemsHelpers()
+                                    .addToCart(widget.popularFoodItem);
 
                                 Navigator.push(
                                     context,

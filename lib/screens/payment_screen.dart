@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../utilities/helpers.dart';
 import '../utilities/lists.dart';
 import '../utilities/values.dart';
-import '../widgets/components/delivery_process/payment_tile.dart';
-import '../widgets/components/main_food/header_text.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
+import '../widgets/components/delivery process/payment_tile.dart';
+import '../widgets/components/main food/header_text.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/sized_box.dart';
 import 'order_placed_screen.dart';
 import 'payment_enter_details.dart';
 

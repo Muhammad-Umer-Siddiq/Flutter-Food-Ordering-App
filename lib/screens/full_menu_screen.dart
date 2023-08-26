@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/components/main_food/chicken_meal_tab.dart';
-import '../widgets/components/main_food/drinks_tab.dart';
-import '../widgets/components/main_food/meals_tab.dart';
-import '../widgets/components/main_food/popular_food_tab.dart';
+import '../widgets/components/main food/chicken_meal_tab.dart';
+import '../widgets/components/main food/drinks_tab.dart';
+import '../widgets/components/main food/meals_tab.dart';
+import '../widgets/components/main food/popular_food_tab.dart';
 import 'main_food_screen.dart';
 
 class FullMenuScreen extends StatefulWidget {
@@ -14,8 +14,10 @@ class FullMenuScreen extends StatefulWidget {
 }
 
 class _FullMenuScreenState extends State<FullMenuScreen> {
+  final List<String> _tabsTitle = ['Popular', 'Meals', 'Drinks', 'Chicken'];
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.sizeOf(context).width;
     return DefaultTabController(
       initialIndex: 0,
       animationDuration: const Duration(milliseconds: 200),
@@ -36,34 +38,20 @@ class _FullMenuScreenState extends State<FullMenuScreen> {
                     color: Colors.white,
                   ))
             ],
-            bottom: const TabBar(
-              unselectedLabelColor: Colors.white,
-              labelColor: Colors.white,
-              labelStyle: TextStyle(fontSize: 19),
-              unselectedLabelStyle: TextStyle(fontSize: 18),
-              tabs: [
-                Tab(
-                  child: Text(
-                    "Popular",
-                  ),
-                ),
-                Tab(
-                  child: Text(
-                    "Meals",
-                  ),
-                ),
-                Tab(
-                  child: Text(
-                    "Drinks",
-                  ),
-                ),
-                Tab(
-                  child: Text(
-                    "Chicken",
-                  ),
-                ),
-              ],
-            ),
+            bottom: TabBar(
+                unselectedLabelColor: Colors.white,
+                labelColor: Colors.white,
+                labelStyle: TextStyle(fontSize: width < 400 ? 17 : 19),
+                unselectedLabelStyle:
+                    TextStyle(fontSize: width < 400 ? 16 : 18),
+                tabs: List.generate(
+                    4,
+                    (index) => Tab(
+                          child: Text(
+                            _tabsTitle[index],
+                            maxLines: 1,
+                          ),
+                        ))),
             automaticallyImplyLeading: false,
             toolbarHeight: 75,
             title: const Text(" F U L L   M E N U "),

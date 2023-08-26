@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/utilities/colors.dart';
 
 class MyElevatedButton extends StatelessWidget {
   final VoidCallback? buttonPress;
@@ -6,7 +7,7 @@ class MyElevatedButton extends StatelessWidget {
   final Color? buttonColor;
   final num? buttonWidthRatio;
   final double? buttonHeightRatio;
-  final double? textSizeRatio;
+  final double? fontSize;
   final Color? textCoLor;
   final double? elevation;
   final Color? borderColor;
@@ -29,7 +30,7 @@ class MyElevatedButton extends StatelessWidget {
     this.buttonColor,
     this.buttonHeightRatio,
     this.buttonWidthRatio,
-    this.textSizeRatio,
+    this.fontSize,
     this.textCoLor,
     this.elevation,
     this.borderColor,
@@ -76,7 +77,7 @@ class MyElevatedButton extends StatelessWidget {
                     side:
                         BorderSide(color: borderColor ?? Colors.red, width: 2)),
                 elevation: elevation ?? 10,
-                backgroundColor: buttonColor ?? Colors.red,
+                backgroundColor: buttonColor ?? AppColors().appThemeColor,
               ),
               onPressed: buttonPress,
               child: MediaQuery.sizeOf(context).height < (screenHeight ?? 400)
@@ -90,9 +91,9 @@ class MyElevatedButton extends StatelessWidget {
                           overflow: textOverflow ?? TextOverflow.ellipsis,
                           maxLines: 1,
                           style: TextStyle(
-                              color: textCoLor ?? Colors.white,
-                              fontSize: MediaQuery.textScaleFactorOf(context) *
-                                  (textSizeRatio ?? 19)),
+                            color: textCoLor ?? Colors.white,
+                            fontSize: fontSize ?? 19,
+                          ),
                         ),
                       ),
                     )
@@ -102,9 +103,9 @@ class MyElevatedButton extends StatelessWidget {
                       maxLines: 1,
                       overflow: textOverflow ?? TextOverflow.ellipsis,
                       style: TextStyle(
-                          color: textCoLor ?? Colors.white,
-                          fontSize: MediaQuery.textScaleFactorOf(context) *
-                              (textSizeRatio ?? 19)),
+                        color: textCoLor ?? Colors.white,
+                        fontSize: fontSize ?? 19,
+                      ),
                     )),
         ),
       ),

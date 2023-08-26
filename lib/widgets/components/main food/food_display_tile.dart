@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../custom_widgets/custom_sized_box.dart';
+import '../../custom widgets/sized_box.dart';
 
 class FoodDisplayTile extends StatelessWidget {
   final String? foodName;

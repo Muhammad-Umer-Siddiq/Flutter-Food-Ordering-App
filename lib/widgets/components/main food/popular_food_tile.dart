@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
-import '../../../models/custom_models/cart_item.dart';
 import '../../../screens/cart_screen.dart';
 import '../../../screens/each_food_details_screen.dart';
+import '../../../utilities/helpers.dart';
 import '../../../utilities/lists.dart';
-import '../../custom_widgets/custom_card_widget.dart';
+import '../../custom widgets/alert_dialog_box.dart';
+import '../../custom widgets/card_widget.dart';
+import '../../custom widgets/cupertino_alert_dialog.dart';
 
 class PopularFoodTile extends StatefulWidget {
   const PopularFoodTile({super.key});
@@ -19,14 +23,46 @@ class _PopularFoodTileState extends State<PopularFoodTile> {
     // To show alert dialog box when user clicks on plus button to add food item
     void showDialogBox() {
       showDialog(
+          context: context,
+          builder: (context) => MyAlertDialog(
+                title: "Food added to cart successfully",
+                actions: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CartScreen(
+                              cartItems: cartItems,
+                            ),
+                          ));
+                    },
+                    child: const Text(
+                      "View cart",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.red.shade400,
+                    ),
+                    child: const Text(
+                      "OK",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ));
+    }
+
+    void showDialogIOS() {
+      showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          actionsAlignment: MainAxisAlignment.spaceBetween,
-          backgroundColor: Colors.red.shade50,
-          title: const Text(
-            "Food added to cart successfully",
-            style: TextStyle(color: Colors.black),
-          ),
+        builder: (context) => MyCupertinoAlertDialog(
+          title: "Food added to cart successfully",
           actions: [
             GestureDetector(
               onTap: () {
@@ -120,9 +156,9 @@ class _PopularFoodTileState extends State<PopularFoodTile> {
                             setState(() {
                               popularFoodList[index].foodQuantity++;
                             });
-
-                            showDialogBox();
-                            addToCart(popularFoodList[index]);
+                            Platform.isIOS ? showDialogIOS() : showDialogBox();
+                            CartItemsHelpers()
+                                .addToCart(popularFoodList[index]);
                           },
                           child: Container(
                             height: 20,

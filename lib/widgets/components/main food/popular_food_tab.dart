@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../screens/each_food_details_screen.dart';
 import '../../../utilities/lists.dart';
-import '../../custom_widgets/custom_card_widget.dart';
-import '../../custom_widgets/custom_grid_view_builder.dart';
+import '../../custom widgets/card_widget.dart';
+import '../../custom widgets/grid_view_builder.dart';
 import 'food_display_tile.dart';
 
 class PopularFoodTab extends StatefulWidget {

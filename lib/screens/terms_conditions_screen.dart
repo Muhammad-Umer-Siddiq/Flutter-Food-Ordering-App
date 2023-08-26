@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../utilities/consts.dart';
 import '../widgets/components/starting screens/background_tile.dart';
-import '../widgets/custom_widgets/custom_elevated_button.dart';
-import '../widgets/custom_widgets/custom_sized_box.dart';
+import '../widgets/custom widgets/elevated_button.dart';
+import '../widgets/custom widgets/sized_box.dart';
 import 'on_boarding_screen.dart';
 import 'privacy_policy_screen.dart';
 
