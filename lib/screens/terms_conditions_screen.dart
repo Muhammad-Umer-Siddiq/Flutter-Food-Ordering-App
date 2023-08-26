@@ -56,15 +56,13 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
             constraints: const BoxConstraints(maxWidth: 700),
             width: MediaQuery.sizeOf(context).width * 0.9,
             height: MediaQuery.sizeOf(context).height * 0.48,
-            child: SingleChildScrollView(
+            child: const SingleChildScrollView(
               child: Text(
                 termsConditionsInfo,
                 textScaleFactor: 1,
                 textAlign: TextAlign.center,
                 textDirection: TextDirection.ltr,
-                style: TextStyle(
-                    fontSize: MediaQuery.textScaleFactorOf(context) * 17.5,
-                    color: Colors.white),
+                style: TextStyle(fontSize: 17.5, color: Colors.white),
               ),
             ),
           ),

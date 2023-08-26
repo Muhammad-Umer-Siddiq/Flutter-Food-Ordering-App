@@ -74,9 +74,8 @@ class MyTextFormField extends StatelessWidget {
                 cursorHeight: 21,
                 textAlignVertical: TextAlignVertical.center,
                 validator: validator,
-                style: TextStyle(
-                    color: textColor ?? Colors.white,
-                    fontSize: MediaQuery.textScaleFactorOf(context) * 19),
+                style:
+                    TextStyle(color: textColor ?? Colors.white, fontSize: 19),
                 keyboardType: keyboardType ?? TextInputType.text,
                 decoration: InputDecoration(
                     floatingLabelAlignment: FloatingLabelAlignment.start,
@@ -112,15 +111,9 @@ class MyTextFormField extends StatelessWidget {
                         const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.red)),
                     labelStyle: labelStyle ??
-                        TextStyle(
-                            color: Colors.white,
-                            fontSize:
-                                MediaQuery.textScaleFactorOf(context) * 16),
+                        const TextStyle(color: Colors.white, fontSize: 16),
                     floatingLabelStyle: floatingLabelStyle ??
-                        TextStyle(
-                            color: Colors.white,
-                            fontSize:
-                                MediaQuery.textScaleFactorOf(context) * 16),
+                        const TextStyle(color: Colors.white, fontSize: 16),
                     labelText: labelText ?? ""),
               ),
             )
@@ -136,9 +129,7 @@ class MyTextFormField extends StatelessWidget {
               cursorHeight: 21,
               textAlignVertical: TextAlignVertical.center,
               validator: validator,
-              style: TextStyle(
-                  color: textColor ?? Colors.white,
-                  fontSize: MediaQuery.textScaleFactorOf(context) * 19),
+              style: TextStyle(color: textColor ?? Colors.white, fontSize: 19),
               keyboardType: keyboardType ?? TextInputType.text,
               decoration: InputDecoration(
                   floatingLabelAlignment: FloatingLabelAlignment.start,
@@ -152,9 +143,8 @@ class MyTextFormField extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 18.0),
                     child: suffixIcon,
                   ),
-                  errorStyle: TextStyle(
-                      color: Colors.red,
-                      fontSize: MediaQuery.textScaleFactorOf(context) * 12.5),
+                  errorStyle:
+                      const TextStyle(color: Colors.red, fontSize: 12.5),
                   enabledBorder: simpleBorder ??
                       const UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -175,13 +165,9 @@ class MyTextFormField extends StatelessWidget {
                       const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.red)),
                   labelStyle: labelStyle ??
-                      TextStyle(
-                          color: Colors.white,
-                          fontSize: MediaQuery.textScaleFactorOf(context) * 16),
+                      const TextStyle(color: Colors.white, fontSize: 16),
                   floatingLabelStyle: floatingLabelStyle ??
-                      TextStyle(
-                          color: Colors.white,
-                          fontSize: MediaQuery.textScaleFactorOf(context) * 16),
+                      const TextStyle(color: Colors.white, fontSize: 16),
                   labelText: labelText ?? ""),
             ),
     );

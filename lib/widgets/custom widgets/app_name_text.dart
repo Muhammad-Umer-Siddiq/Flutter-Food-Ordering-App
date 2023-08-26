@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../utilities/consts.dart';
 
 class MyAppNameText extends StatelessWidget {
-  final num? textSizeRatio;
+  final double? fontSize;
   final TextStyle? textStyle;
   final num? widthRatio;
   final num? heightRatio;
@@ -12,7 +12,7 @@ class MyAppNameText extends StatelessWidget {
   final Color? color;
   const MyAppNameText({
     super.key,
-    this.textSizeRatio,
+    this.fontSize,
     this.textStyle,
     this.overFlow,
     this.widthRatio,
@@ -30,8 +30,7 @@ class MyAppNameText extends StatelessWidget {
       style: textStyle ??
           TextStyle(
               fontStyle: fontStyle ?? FontStyle.italic,
-              fontSize:
-                  MediaQuery.textScaleFactorOf(context) * (textSizeRatio ?? 25),
+              fontSize: fontSize ?? 25,
               color: color ?? Colors.white),
     );
   }

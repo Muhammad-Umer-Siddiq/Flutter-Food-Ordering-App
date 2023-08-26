@@ -48,13 +48,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const Expanded(
-                    flex: 0, child: MyAppNameText(textSizeRatio: 32)),
+                const Expanded(flex: 0, child: MyAppNameText(fontSize: 32)),
                 const MySizedBox(),
-                Text("Register",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: MediaQuery.textScaleFactorOf(context) * 20)),
+                const Text("Register",
+                    style: TextStyle(color: Colors.white, fontSize: 20)),
                 const MySizedBox(),
                 MyTextFormField(
                   labelText: 'First Name',
@@ -183,12 +180,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
+                    const Text(
                       "Already Registered? ",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: MediaQuery.textScaleFactorOf(context) * 18,
-                          color: Colors.white),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                     InkWell(
                       onTap: () {
@@ -201,10 +196,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Text(
                         "Sign-in",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.red.shade200,
-                            fontSize:
-                                MediaQuery.textScaleFactorOf(context) * 18),
+                        style:
+                            TextStyle(color: Colors.red.shade200, fontSize: 18),
                       ),
                     ),
                   ],

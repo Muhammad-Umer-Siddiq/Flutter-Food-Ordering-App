@@ -26,14 +26,14 @@ class RegisterOrSignInScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            const MyAppNameText(textSizeRatio: 34),
+            const MyAppNameText(fontSize: 34),
             const MySizedBox(),
-            Text(
+            const Text(
               "Nothing Acts faster than our order!",
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: MediaQuery.textScaleFactorOf(context) * 19,
+                fontSize: 19,
                 color: Colors.white,
               ),
             ),
@@ -52,17 +52,17 @@ class RegisterOrSignInScreen extends StatelessWidget {
             const MySizedBox(heightRatio: 0.03),
             GestureDetector(
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const SignInScreen(),
                     ));
               },
-              child: Text(
+              child: const Text(
                 "Sign-in",
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: MediaQuery.textScaleFactorOf(context) * 20,
+                  fontSize: 20,
                   color: Colors.white,
                 ),
               ),

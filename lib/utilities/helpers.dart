@@ -3,9 +3,8 @@ import 'consts.dart';
 import 'lists.dart';
 import 'values.dart';
 
-// For each food details Screen
-
 class CartItemsHelpers {
+  // To calculate total price of food items added in user cart
   int calculateTotalPrice(List<CartItem> cartItems) {
     int totalPrice = 0;
     for (CartItem cartItem in cartItems) {
@@ -16,6 +15,7 @@ class CartItemsHelpers {
     return totalPrice;
   }
 
+  // To add static food item into cart screen
   void addToCart(dynamic food) {
     bool itemExists = false;
 

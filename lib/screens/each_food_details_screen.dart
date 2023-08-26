@@ -394,9 +394,6 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                                         cartItems: cartItems,
                                       ),
                                     ));
-                                setState(() {
-                                  widget.popularFoodItem!.foodQuantity++;
-                                });
                               },
                               elevation: 40,
                             )
