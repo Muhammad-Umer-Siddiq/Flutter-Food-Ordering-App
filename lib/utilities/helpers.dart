@@ -1,29 +1,56 @@
-import '../models/custom models/cart_item.dart';
-import 'consts.dart';
-import 'lists.dart';
-import 'values.dart';
+import 'dart:developer';
+
+import '../utilities/imports.dart';
 
 class CartItemsHelpers {
   // To calculate total price of food items added in user cart
-  int calculateTotalPrice(List<CartItem> cartItems) {
-    int totalPrice = 0;
+  static int calculateTotalPrice(List<CartItem> cartItems) {
+    int totalOrderPrice = 0;
+
     for (CartItem cartItem in cartItems) {
-      int totalEachFoodPrice =
-          (cartItem.food!.foodQuantity) * (cartItem.food!.foodPrice);
-      totalPrice += totalEachFoodPrice;
+      int foodPrice = 0;
+
+      if (cartItem.food!.extrasCheck) {
+        // If user has selected extras, then add it's respective price
+        foodPrice += cartItem.food!.extrasPrice;
+        log("Food Price with Food Extras for ${cartItem.food!.foodName} : Rs. $foodPrice (AC)");
+      }
+      foodPrice += cartItem.food!.foodPrice;
+      log("  Price with food price & extra ${cartItem.food!.foodName} : Rs. $foodPrice(AC)");
+
+      int totalEachFoodPrice = foodPrice * cartItem.food!.foodQuantity;
+      log("Total food price including quantity & food extras ${cartItem.food!.foodName} : Rs. $totalEachFoodPrice (AC)");
+
+      totalOrderPrice += totalEachFoodPrice;
+      log('Total Order price $totalOrderPrice (AC)');
     }
-    return totalPrice;
+    return totalOrderPrice;
   }
 
   // To add static food item into cart screen
-  void addToCart(dynamic food) {
+  static void addToCart(PopularFoodModel food) {
     bool itemExists = false;
-
+    // To ensures that the same food item is not added as a new entry
+    // in the cart,
+    // but the quantity is increased for the existing entry.
     for (var item in cartItems) {
       if (item.food == food) {
-        item.quantity++;
-        itemExists = true;
-        break;
+        if (item.food!.foodQuantity > 1) {
+          // item already added to cart, just changing the quantity
+          item.quantity = item.food!.foodQuantity;
+          itemExists = true;
+          break;
+        } else {
+          if (item.quantity == 30) {
+            itemExists = true;
+            break;
+          } else {
+            if (item.food!.foodQuantity == 1) {
+              itemExists = true;
+              break;
+            }
+          }
+        }
       }
     }
 
@@ -33,20 +60,42 @@ class CartItemsHelpers {
   }
 }
 
-bool areFieldsEmpty() {
-  if (nameControllerD.text.isEmpty ||
-      streetControllerD.text.isEmpty ||
-      cityControllerD.text.isEmpty ||
-      phoneControllerD.text.isEmpty) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 class DeliveryProcessHelpers {
   // To select one payment & unselect the rest
-  void selectPaymentTypes(int currentPayment) {
+
+  static bool registerFieldsEmpty() {
+    if (AppConsts.nameControllerR.text.isEmpty &&
+        AppConsts.streetControllerR.text.isEmpty &&
+        AppConsts.phoneControllerR.text.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static bool deliveryFieldsEmpty() {
+    if (AppConsts.nameControllerD.text.isEmpty ||
+        AppConsts.addressControllerD.text.isEmpty ||
+        AppConsts.phoneControllerD.text.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static void newDetails() {
+    if (AppValues.useProfileForDelivery) {
+      AppValues.name = AppConsts.nameControllerR.text;
+      AppValues.homeAddress = AppConsts.streetControllerR.text;
+      AppValues.phoneNumber = AppConsts.phoneControllerR.text;
+    } else {
+      AppValues.name = AppConsts.nameControllerD.text;
+      AppValues.homeAddress = AppConsts.addressControllerD.text;
+      AppValues.phoneNumber = AppConsts.phoneControllerD.text;
+    }
+  }
+
+  static void selectPaymentTypes(int currentPayment) {
     for (int i = 0; i < paymentTypes.length; i++) {
       paymentTypes[i].paymentIsSelected = false;
     }
@@ -54,37 +103,34 @@ class DeliveryProcessHelpers {
   }
 
   // To unselect all payment types
-  void unselectPaymentTypes() {
+  static void unselectPaymentTypes() {
     for (int i = 0; i < paymentTypes.length; i++) {
       paymentTypes[i].paymentIsSelected = false;
     }
   }
 
   // To select & unselect pay on arrival option
-  void selectArrivalPayment() {
-    shouldPayOnArrival = !shouldPayOnArrival;
-    if (shouldPayOnArrival == true) {
-      showError = false;
+  static void selectArrivalPayment() {
+    AppValues.shouldPayOnArrival = !AppValues.shouldPayOnArrival;
+    if (AppValues.shouldPayOnArrival == true) {
+      AppValues.showError = false;
     } else {
-      showError = true;
+      AppValues.showError = true;
     }
   }
 
   // To only unselect pay on arrival option
-  void unselectArrivalPayment() => shouldPayOnArrival = false;
+  static void unselectArrivalPayment() => AppValues.shouldPayOnArrival = false;
 
-  void setEverythingDefault() {
+  static void setEverythingDefault() {
     unselectPaymentTypes();
     unselectArrivalPayment();
-    useProfileForDelivery = false;
+    AppValues.useProfileForDelivery = false;
+
+    for (int i = 0; i < popularFoodList.length; i++) {
+      popularFoodList[i].foodQuantity = 1;
+    }
 
     cartItems.clear();
-
-    for (int i = 0; i < cartItems.length; i++) {
-      cartItems[i].quantity = 0;
-    }
-    for (int i = 0; i < popularFoodList.length; i++) {
-      popularFoodList[i].foodQuantity = 0;
-    }
   }
 }

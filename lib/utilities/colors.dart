@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
+import '../utilities/imports.dart';
 
 class AppColors {
-  final Color appThemeColor = Colors.red;
+  static const Color appThemeColor = Colors.red;
 }
