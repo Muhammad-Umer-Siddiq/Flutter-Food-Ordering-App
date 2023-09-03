@@ -4,11 +4,14 @@ class BackgroundTile extends StatelessWidget {
   final ImageProvider<Object>? bgImage;
   final Widget? frontContent;
   final EdgeInsetsGeometry? padding;
-  const BackgroundTile(
-      {super.key,
-      required this.bgImage,
-      required this.frontContent,
-      this.padding});
+  final double? opacity;
+  const BackgroundTile({
+    super.key,
+    required this.bgImage,
+    required this.frontContent,
+    this.padding,
+    this.opacity,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,8 @@ class BackgroundTile extends StatelessWidget {
         padding: padding,
         decoration: BoxDecoration(
           color: Colors.black,
-          image:
-              DecorationImage(fit: BoxFit.cover, opacity: 95, image: bgImage!),
+          image: DecorationImage(
+              fit: BoxFit.cover, opacity: opacity ?? 95, image: bgImage!),
         ),
         child: frontContent);
   }

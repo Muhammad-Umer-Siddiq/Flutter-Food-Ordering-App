@@ -43,6 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     style: TextStyle(color: Colors.white, fontSize: 21)),
                 const CustomSizedBox(heightRatio: 0.03),
                 CustomTextFormFiled(
+                  keyboardType: TextInputType.emailAddress,
                   labelText: 'Email Address',
                   controller: AppConsts.emailControllerS,
                   hintText: 'abc123@gmail.com',

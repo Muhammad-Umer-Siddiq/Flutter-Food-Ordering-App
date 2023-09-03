@@ -11,7 +11,7 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  void _showDialogAndroid() {
+  void _showCartIsEmpty() {
     showDialog(
       context: context,
       builder: (context) => CustomAlertDialog(
@@ -28,7 +28,7 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  void _showDialogIOS() {
+  void _showCartIsEmptyIOS() {
     showDialog(
       context: context,
       builder: (context) => CustomCupertinoAlertDialog(
@@ -64,7 +64,7 @@ class _CartScreenState extends State<CartScreen> {
                   child: Container(
                     color: Colors.white,
                     child: Center(
-                      child: MyResponsiveText(
+                      child: CustomResponsiveText(
                         'Your cart is empty!',
                         scaleFactor: 0.017,
                         color: Colors.grey.shade700,
@@ -150,6 +150,9 @@ class _CartScreenState extends State<CartScreen> {
                                 child: GestureDetector(
                                   onTap: () {
                                     setState(() {
+                                      cartItems[index].food!.foodQuantity == 1;
+                                      cartItems[index].food!.extrasCheck ==
+                                          false;
                                       cartItems.removeAt(index);
                                     });
                                   },
@@ -238,8 +241,8 @@ class _CartScreenState extends State<CartScreen> {
                     buttonPress: () {
                       if (cartItems.isEmpty) {
                         Platform.isIOS
-                            ? _showDialogIOS()
-                            : _showDialogAndroid();
+                            ? _showCartIsEmptyIOS()
+                            : _showCartIsEmpty();
                       } else {
                         Navigator.push(
                             context,

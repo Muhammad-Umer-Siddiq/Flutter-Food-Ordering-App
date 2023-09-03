@@ -157,7 +157,7 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const MainFoodScreen(),
+                            builder: (context) => const OnBoardingScreen(),
                           ));
                     }
                   },

@@ -26,33 +26,36 @@ class CustomTextFormFiled extends StatelessWidget {
   final Color? cursorColor;
   final bool? readOnly;
   final VoidCallback? onTapField;
-  const CustomTextFormFiled(
-      {super.key,
-      this.labelText,
-      this.keyboardType,
-      this.suffixIcon,
-      this.maxLength,
-      this.hintText,
-      this.obscureText,
-      this.controller,
-      this.fieldWidth,
-      this.simpleBorder,
-      this.errorBorder,
-      this.enabled,
-      this.prefixIcon,
-      this.elevation,
-      this.fieldHeight,
-      this.haveCardField = false,
-      this.textColor,
-      this.validator,
-      this.labelStyle,
-      this.hintStyle,
-      this.floatingLabelStyle,
-      this.cursorColor,
-      this.onTapField,
-      this.readOnly,
-      this.helperText,
-      this.helperTextStyle});
+  final bool? autoFocus;
+  const CustomTextFormFiled({
+    super.key,
+    this.labelText,
+    this.keyboardType,
+    this.suffixIcon,
+    this.maxLength,
+    this.hintText,
+    this.obscureText,
+    this.controller,
+    this.fieldWidth,
+    this.simpleBorder,
+    this.errorBorder,
+    this.enabled,
+    this.prefixIcon,
+    this.elevation,
+    this.fieldHeight,
+    this.haveCardField = false,
+    this.textColor,
+    this.validator,
+    this.labelStyle,
+    this.hintStyle,
+    this.floatingLabelStyle,
+    this.cursorColor,
+    this.onTapField,
+    this.readOnly,
+    this.helperText,
+    this.helperTextStyle,
+    this.autoFocus,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +69,7 @@ class CustomTextFormFiled extends StatelessWidget {
               shadowColor: Colors.white,
               elevation: elevation ?? 0,
               child: TextFormField(
+                autofocus: autoFocus ?? false,
                 readOnly: readOnly ?? false,
                 onTap: onTapField,
                 controller: controller,
@@ -73,7 +77,7 @@ class CustomTextFormFiled extends StatelessWidget {
                 obscureText: obscureText ?? false,
                 obscuringCharacter: '*',
                 cursorColor: cursorColor ?? Colors.white,
-                maxLength: maxLength ?? 120,
+                maxLength: maxLength ?? 150,
                 mouseCursor: MaterialStateMouseCursor.clickable,
                 cursorHeight: 21,
                 textAlignVertical: TextAlignVertical.center,
@@ -83,16 +87,16 @@ class CustomTextFormFiled extends StatelessWidget {
                 keyboardType: keyboardType ?? TextInputType.text,
                 decoration: InputDecoration(
                     helperText: helperText,
-                    helperMaxLines: 1,
                     helperStyle: helperTextStyle ??
                         const TextStyle(color: Colors.white70),
+                    helperMaxLines: 1,
                     floatingLabelAlignment: FloatingLabelAlignment.start,
                     floatingLabelBehavior: FloatingLabelBehavior.auto,
                     prefixIcon: prefixIcon,
                     counterText: '',
                     hintText: hintText ?? '',
                     hintStyle: hintStyle ??
-                        const TextStyle(color: Colors.white54, fontSize: 13),
+                        const TextStyle(color: Colors.white38, fontSize: 13),
                     suffixIcon: Padding(
                       padding: const EdgeInsets.only(top: 18.0),
                       child: suffixIcon,
@@ -126,6 +130,7 @@ class CustomTextFormFiled extends StatelessWidget {
               ),
             )
           : TextFormField(
+              autofocus: autoFocus ?? false,
               readOnly: readOnly ?? false,
               onTap: onTapField,
               controller: controller,
@@ -133,7 +138,7 @@ class CustomTextFormFiled extends StatelessWidget {
               obscureText: obscureText ?? false,
               obscuringCharacter: '*',
               cursorColor: cursorColor ?? Colors.white,
-              maxLength: maxLength ?? 120,
+              maxLength: maxLength ?? 150,
               cursorHeight: 21,
               textAlignVertical: TextAlignVertical.center,
               validator: validator,
@@ -150,7 +155,7 @@ class CustomTextFormFiled extends StatelessWidget {
                   counterText: '',
                   hintText: hintText ?? '',
                   hintStyle: hintStyle ??
-                      const TextStyle(color: Colors.white54, fontSize: 13),
+                      const TextStyle(color: Colors.white38, fontSize: 13),
                   suffixIcon: Padding(
                     padding: const EdgeInsets.only(top: 18.0),
                     child: suffixIcon,

@@ -19,24 +19,19 @@ class EachFoodDetailsScreen extends StatefulWidget {
 }
 
 class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
-  void _showDialogAndroid() {
+  @override
+  void setState(VoidCallback fn) {
+    super.setState(fn);
+    CartItemsHelpers.addToCart(widget.popularFoodItem!);
+  }
+
+  void _orderNotPossible() {
     showDialog(
         context: context,
         builder: (context) => CustomAlertDialog(
               title: 'Coming Soon!',
               content: "Soon you would be allow to order these food",
               actions: [
-                GestureDetector(
-                  onTap: () => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const FullMenuScreen(),
-                      )),
-                  child: Text(
-                    "View Full Menu",
-                    style: TextStyle(fontSize: 17, color: Colors.red.shade900),
-                  ),
-                ),
                 CustomTextButton(
                   text: 'Ok',
                   buttonPress: () => Navigator.pop(context),
@@ -45,24 +40,13 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
             ));
   }
 
-  void _showDialogIOS() {
+  void _orderNotPossibleIOS() {
     showDialog(
         context: context,
         builder: (context) => CustomCupertinoAlertDialog(
               title: 'Coming Soon',
               content: "Soon you would be allow to order these food",
               actions: [
-                GestureDetector(
-                  onTap: () => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const FullMenuScreen(),
-                      )),
-                  child: Text(
-                    "View Full Menu",
-                    style: TextStyle(fontSize: 17, color: Colors.red.shade900),
-                  ),
-                ),
                 CustomTextButton(
                   text: 'Ok',
                   buttonPress: () => Navigator.pop(context),
@@ -120,12 +104,6 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
           ],
         ),
       );
-
-  @override
-  void setState(VoidCallback fn) {
-    super.setState(fn);
-    CartItemsHelpers.addToCart(widget.popularFoodItem!);
-  }
 
   void _checkOrUncheck() => setState(() => widget.popularFoodItem!.extrasCheck =
       !widget.popularFoodItem!.extrasCheck);
@@ -196,16 +174,26 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                                 ),
                               ),
                             ),
+                            const CustomSizedBox(heightRatio: 0.02),
+                            const Flexible(
+                              child: Text(
+                                "No extras available!",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.start,
+                                style: TextStyle(fontSize: 18.5),
+                              ),
+                            ),
                             const CustomSizedBox(heightRatio: 0.04),
                             CustomElevatedButton(
                               buttonColor: Colors.red.shade200,
                               borderColor: Colors.red.shade200,
-                              buttonAlignment: Alignment.center,
+                              buttonAlignment: Alignment.bottomCenter,
                               buttonText: "Add to cart",
                               buttonPress: () {
                                 Platform.isIOS
-                                    ? _showDialogIOS()
-                                    : _showDialogAndroid();
+                                    ? _orderNotPossibleIOS()
+                                    : _orderNotPossible();
                               },
                               buttonWidthRatio: 0.8,
                               elevation: 0,

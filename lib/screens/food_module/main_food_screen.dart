@@ -12,6 +12,19 @@ class MainFoodScreen extends StatefulWidget {
 }
 
 class _MainFoodScreenState extends State<MainFoodScreen> {
+  String _name = 'Ahmed';
+  String _emailAddress = 'ahmed123@gmail.com';
+
+  void newDetails() {
+    if (AppConsts.emailControllerR.text.isNotEmpty &&
+        AppConsts.nameControllerR.text.isNotEmpty) {
+      setState(() {
+        _name = AppConsts.nameControllerR.text;
+        _emailAddress = AppConsts.emailControllerR.text;
+      });
+    }
+  }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -70,13 +83,14 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const Text(
-                    "Ahmed",
-                    style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                  Text(
+                    _name,
+                    style: const TextStyle(
+                        fontSize: 21, fontWeight: FontWeight.bold),
                   ),
-                  const Text(
-                    "ahmed123@gmail.com",
-                    style: TextStyle(fontSize: 18),
+                  Text(
+                    _emailAddress,
+                    style: const TextStyle(fontSize: 18),
                   )
                 ],
               )),
@@ -178,7 +192,7 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Center(
-                child: MyResponsiveText(
+                child: CustomResponsiveText(
                   'Hi Ahmed',
                   scaleFactor: width > 780 ? 0.013 : 0.02,
                   color: Colors.grey.shade700,
@@ -187,14 +201,14 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <MyResponsiveText>[
-                  MyResponsiveText(
+                children: <CustomResponsiveText>[
+                  CustomResponsiveText(
                     'What would you like to ',
                     scaleFactor: width > 780 ? 0.013 : 0.02,
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
                   ),
-                  MyResponsiveText(
+                  CustomResponsiveText(
                     'eat?',
                     scaleFactor: width > 780 ? 0.013 : 0.02,
                     color: Colors.red.shade900,

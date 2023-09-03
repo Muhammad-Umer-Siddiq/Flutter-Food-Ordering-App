@@ -37,15 +37,14 @@ class _FullMenuScreenState extends State<FullMenuScreen> {
                 indicatorColor: Colors.white,
                 indicatorSize: TabBarIndicatorSize.tab,
                 indicatorPadding: const EdgeInsets.only(bottom: 1),
-                unselectedLabelColor: Colors.white,
                 labelColor: Colors.white,
                 labelStyle: TextStyle(fontSize: width < 400 ? 17 : 19),
-                unselectedLabelStyle:
-                    TextStyle(fontSize: width < 400 ? 16 : 18),
                 tabs: List.generate(
                     4,
                     (index) => Tab(
-                          child: Text(
+                          child: CustomResponsiveText(
+                            color: Colors.white,
+                            scaleFactor: width > 800 ? 0.011 : 0.014,
                             _tabsTitle[index],
                             maxLines: 1,
                           ),

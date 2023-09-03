@@ -48,6 +48,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         },
         itemBuilder: (context, index) => BackgroundTile(
             padding: const EdgeInsets.all(8),
+            opacity: 60,
             bgImage: AssetImage(_bgImages[index]),
             frontContent: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -59,7 +60,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   textScaleFactor: 1,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 25,
+                    fontSize: 24,
                     color: Colors.white,
                   ),
                 ),
@@ -98,11 +99,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 const CustomSizedBox(),
                 CustomElevatedButton(
+                  maxWidth: 380,
+                  buttonWidthRatio: 0.68,
+                  elevation: 20,
                   buttonText:
                       _currentPageNo == _totalPages - 1 ? "Let's Eat" : "Next",
                   buttonPress: () {
-                    _currentPageNo == 2
-                        ? Navigator.push(
+                    _currentPageNo == _totalPages - 1
+                        ? Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const MainFoodScreen(),

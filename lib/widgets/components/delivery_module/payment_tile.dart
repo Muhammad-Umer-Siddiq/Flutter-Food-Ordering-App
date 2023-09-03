@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
-import 'package:food_ordering_app/utilities/imports.dart';
+
+import '../../../utilities/imports.dart';
 
 class PaymentTitle extends StatelessWidget {
   final String? paymentIconURL;

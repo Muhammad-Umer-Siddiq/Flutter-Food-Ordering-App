@@ -2,6 +2,26 @@ import 'dart:developer';
 
 import '../utilities/imports.dart';
 
+class LoginHelpers {
+  static String? customEmptyValidation({String? textValue, String? fieldName}) {
+    if (textValue!.isEmpty) {
+      return "$fieldName is required";
+    } else {
+      return null;
+    }
+  }
+
+  static bool registerFieldsEmpty() {
+    if (AppConsts.nameControllerR.text.isEmpty ||
+        AppConsts.streetControllerR.text.isEmpty ||
+        AppConsts.phoneControllerR.text.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
 class CartItemsHelpers {
   // To calculate total price of food items added in user cart
   static int calculateTotalPrice(List<CartItem> cartItems) {
@@ -63,16 +83,6 @@ class CartItemsHelpers {
 class DeliveryProcessHelpers {
   // To select one payment & unselect the rest
 
-  static bool registerFieldsEmpty() {
-    if (AppConsts.nameControllerR.text.isEmpty &&
-        AppConsts.streetControllerR.text.isEmpty &&
-        AppConsts.phoneControllerR.text.isEmpty) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   static bool deliveryFieldsEmpty() {
     if (AppConsts.nameControllerD.text.isEmpty ||
         AppConsts.addressControllerD.text.isEmpty ||
@@ -84,14 +94,15 @@ class DeliveryProcessHelpers {
   }
 
   static void newDetails() {
-    if (AppValues.useProfileForDelivery) {
-      AppValues.name = AppConsts.nameControllerR.text;
-      AppValues.homeAddress = AppConsts.streetControllerR.text;
-      AppValues.phoneNumber = AppConsts.phoneControllerR.text;
-    } else {
+    if (DeliveryProcessHelpers.deliveryFieldsEmpty() == false) {
       AppValues.name = AppConsts.nameControllerD.text;
       AppValues.homeAddress = AppConsts.addressControllerD.text;
       AppValues.phoneNumber = AppConsts.phoneControllerD.text;
+    } else {
+      // If user has provided details during register screen & approve to use that,then
+      AppValues.name = AppConsts.nameControllerR.text;
+      AppValues.homeAddress = AppConsts.streetControllerR.text;
+      AppValues.phoneNumber = AppConsts.phoneControllerR.text;
     }
   }
 

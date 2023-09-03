@@ -10,7 +10,7 @@ class DrinksTab extends StatefulWidget {
 }
 
 class _DrinksTabState extends State<DrinksTab> {
-  void _showDialogAndroid() {
+  void _detailsNotPossible() {
     showDialog(
         context: context,
         builder: (context) => CustomAlertDialog(
@@ -26,7 +26,7 @@ class _DrinksTabState extends State<DrinksTab> {
             ));
   }
 
-  void _showDialogIOS() {
+  void _detailsNotPossibleIOS() {
     showDialog(
         context: context,
         builder: (context) => CustomCupertinoAlertDialog(
@@ -77,7 +77,9 @@ class _DrinksTabState extends State<DrinksTab> {
                 child: CustomCard(
                     elevation: 6,
                     cardTap: () {
-                      Platform.isIOS ? _showDialogIOS() : _showDialogAndroid();
+                      Platform.isIOS
+                          ? _detailsNotPossibleIOS()
+                          : _detailsNotPossible();
                     },
                     contentWidget: FoodDisplayTile(
                       foodImage: Image.network(

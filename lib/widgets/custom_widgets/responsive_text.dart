@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyResponsiveText extends StatelessWidget {
+class CustomResponsiveText extends StatelessWidget {
   final String data;
   final double scaleFactor; // Adjust it accordingly
   final Color? color;
@@ -8,7 +8,7 @@ class MyResponsiveText extends StatelessWidget {
   final TextOverflow? overflow;
   final TextAlign? textAlign;
   final int? maxLines;
-  const MyResponsiveText(
+  const CustomResponsiveText(
     this.data, {
     super.key,
     this.scaleFactor = 0.025,

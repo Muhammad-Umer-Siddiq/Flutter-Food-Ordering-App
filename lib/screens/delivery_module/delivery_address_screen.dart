@@ -8,7 +8,7 @@ class DeliveryAddressScreen extends StatefulWidget {
 }
 
 class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
-  void _showDialogAndroid() {
+  void _androidDialogAllow() {
     showDialog(
         context: context,
         builder: (context) => CustomAlertDialog(
@@ -36,7 +36,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
             ));
   }
 
-  void _showDialogUser() {
+  void _dialogAddressNotGiven() {
     showDialog(
       context: context,
       builder: (context) => CustomAlertDialog(
@@ -47,10 +47,8 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
           CustomTextButton(
             text: 'Ok',
             buttonPress: () {
+              setState(() => AppValues.useProfileForDelivery = false);
               Navigator.pop(context);
-              setState(() {
-                AppValues.useProfileForDelivery = false;
-              });
             },
           )
         ],
@@ -58,7 +56,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
     );
   }
 
-  void _showDialogIOS() {
+  void _iosDialogAllow() {
     showDialog(
         context: context,
         builder: (context) => CustomCupertinoAlertDialog(
@@ -182,25 +180,32 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
                   elevation: 5,
                   buttonText: 'Proceed',
                   buttonPress: () {
-                    if (DeliveryProcessHelpers.deliveryFieldsEmpty() == true &&
-                        AppValues.useProfileForDelivery == false &&
-                        DeliveryProcessHelpers.registerFieldsEmpty() == false) {
-                      Platform.isIOS ? _showDialogIOS() : _showDialogAndroid();
-                    } else if (DeliveryProcessHelpers.deliveryFieldsEmpty() ==
-                            false ||
-                        AppValues.useProfileForDelivery == true) {
+                    if (DeliveryProcessHelpers.deliveryFieldsEmpty() == false ||
+                        LoginHelpers.registerFieldsEmpty() == false) {
                       setState(() {
                         DeliveryProcessHelpers.newDetails();
                       });
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const OrderSummaryScreen(),
                           ));
-                    } else if (DeliveryProcessHelpers.deliveryFieldsEmpty() ==
-                            true &&
-                        DeliveryProcessHelpers.registerFieldsEmpty() == true) {
-                      _showDialogUser();
+                    } else if (DeliveryProcessHelpers.deliveryFieldsEmpty() &&
+                        AppValues.useProfileForDelivery == false &&
+                        LoginHelpers.registerFieldsEmpty() == false) {
+                      Platform.isIOS
+                          ? _iosDialogAllow()
+                          : _androidDialogAllow();
+                    } else if (DeliveryProcessHelpers.deliveryFieldsEmpty() &&
+                        LoginHelpers.registerFieldsEmpty() &&
+                        AppValues.useProfileForDelivery == true) {
+                      _dialogAddressNotGiven();
+                    } else {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const OrderSummaryScreen(),
+                          ));
                     }
                   },
                 )

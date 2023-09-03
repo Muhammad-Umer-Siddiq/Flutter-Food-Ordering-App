@@ -45,16 +45,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     style: TextStyle(color: Colors.white, fontSize: 20)),
                 const CustomSizedBox(),
                 CustomTextFormFiled(
-                  labelText: 'First Name *',
-                  keyboardType: TextInputType.text,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'This field is required';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
+                    labelText: 'First Name *',
+                    keyboardType: TextInputType.text,
+                    controller: AppConsts.nameControllerR,
+                    validator: (value) {
+                      return LoginHelpers.customEmptyValidation(
+                          fieldName: 'Name', textValue: value);
+                    }),
                 const CustomSizedBox(),
                 CustomTextFormFiled(
                   labelText: 'Email Address *',
@@ -62,12 +59,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   hintText: 'abc123@gmail.com',
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return ' This field is required';
+                      return 'Email address is required';
                     } else {
                       if (!value.endsWith('@gmail.com')) {
                         return 'Invalid Email Address';
-                      } else if (value.isEmpty) {
-                        return 'This field cannot empty';
                       } else {
                         return null;
                       }
@@ -76,6 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const CustomSizedBox(),
                 CustomTextFormFiled(
+                  helperText: "Recommended for delivery",
                   labelText: 'Phone Number',
                   keyboardType: TextInputType.phone,
                   maxLength: 11,
@@ -84,6 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const CustomSizedBox(),
                 CustomTextFormFiled(
+                  helperText: "Recommended for delivery",
                   labelText: 'Home Address',
                   keyboardType: TextInputType.streetAddress,
                   hintText: "2025 M Street, Northwest, Washington, DC, 20036.",
@@ -93,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomTextFormFiled(
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return ' This field is required';
+                      return ' Password is required';
                     } else if (value.length < 8) {
                       return 'Password should be 8 characters long';
                     } else {
