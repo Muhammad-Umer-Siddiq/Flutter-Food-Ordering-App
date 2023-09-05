@@ -1,10 +1,5 @@
 import '../../utilities/imports.dart';
 
-// Fully responsive
-// Tested on min size of 320 × 320
-// Tested on full web size (1536 × 747)
-// Tested on Pixel 3a mobile
-
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
 

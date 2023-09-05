@@ -1,9 +1,5 @@
 import '../../utilities/imports.dart';
 
-// Fully responsive
-// Tested on min size of 320 × 320
-// Tested on full web size (1536 × 747)
-
 class MainFoodScreen extends StatefulWidget {
   const MainFoodScreen({super.key});
 
@@ -29,7 +25,8 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int width = MediaQuery.sizeOf(context).width.toInt();
+    double width = MediaQuery.sizeOf(context).width;
+    double height = MediaQuery.sizeOf(context).height;
 
     return Scaffold(
       key: _scaffoldKey,
@@ -114,14 +111,6 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
                   leading: const Icon(Icons.settings),
                 ),
                 ListTile(
-                  title: const Text(
-                    "About us",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  leading: const Icon(Icons.fastfood_rounded),
-                  onTap: () {},
-                ),
-                ListTile(
                   onTap: () {},
                   title: const Text(
                     "Order History",
@@ -139,6 +128,7 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
                 ),
                 ListTile(
                   onTap: () {
+                    AppValues.userAgreedPolicy = true;
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -153,6 +143,8 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
                 ),
                 ListTile(
                   onTap: () {
+                    AppValues.userAgreedPolicy = true;
+
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -171,6 +163,17 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
                   buttonWidthRatio: 0.4,
                   elevation: 0,
                   buttonPress: () {
+                    setState(() {
+                      AppConsts.emailControllerS.text = '';
+                      AppConsts.passwordControllerS.text = '';
+                      AppConsts.emailControllerR.text = '';
+                      AppConsts.passwordControllerR.text = '';
+                      AppConsts.streetControllerR.text = '';
+                      AppConsts.phoneControllerR.text = '';
+                      AppConsts.passwordControllerR.text = '';
+                      AppConsts.passwordControllerRR.text = '';
+                      DeliveryProcessHelpers.setEverythingDefault();
+                    });
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -184,6 +187,9 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
         ),
       ),
       body: SingleChildScrollView(
+        physics: height < 400
+            ? const NeverScrollableScrollPhysics()
+            : const AlwaysScrollableScrollPhysics(),
         child: Container(
           height: MediaQuery.of(context).size.height * 1,
           width: MediaQuery.of(context).size.width * 1,

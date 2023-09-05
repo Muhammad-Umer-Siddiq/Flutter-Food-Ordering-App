@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 
-import '../../../utilities/imports.dart';
+import '../../../../utilities/imports.dart';
 
 class MealsTab extends StatefulWidget {
   const MealsTab({super.key});

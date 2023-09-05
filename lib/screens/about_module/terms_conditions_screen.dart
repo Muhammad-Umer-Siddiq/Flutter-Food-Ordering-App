@@ -1,10 +1,5 @@
 import '../../utilities/imports.dart';
 
-// Fully responsive
-// Tested on min size of 320 × 320
-// Tested on full web size (1536 × 747)
-// Tested on Pixel 3a mobile
-
 class TermsConditionsScreen extends StatefulWidget {
   const TermsConditionsScreen({super.key});
 
@@ -16,7 +11,6 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
   // For policy Screens
   bool _agreeTermsConditions = false;
   bool _agreePrivacyPolicy = false;
-  bool hasUserAgreed = false;
 
   bool _heightSizeValidate({required int screenHeight}) {
     if (MediaQuery.sizeOf(context).width < screenHeight) {
@@ -46,9 +40,9 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
           ),
           const CustomSizedBox(heightRatio: 0.03),
           Container(
-            constraints: const BoxConstraints(maxWidth: 700),
+            constraints: const BoxConstraints(maxWidth: 600),
             width: MediaQuery.sizeOf(context).width * 0.9,
-            height: MediaQuery.sizeOf(context).height * 0.48,
+            height: MediaQuery.sizeOf(context).height * 0.49,
             child: const SingleChildScrollView(
               child: Text(
                 AppConsts.termsConditionsInfo,
@@ -62,8 +56,8 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
           _heightSizeValidate(screenHeight: 465)
               ? const CustomSizedBox()
               : const CustomSizedBox(heightRatio: 0.03),
-          hasUserAgreed
-              ? const Text('')
+          AppValues.userAgreedPolicy
+              ? const SizedBox()
               : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -85,13 +79,11 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
                     )
                   ],
                 ),
-          hasUserAgreed
-              ? const Text('')
-              : _heightSizeValidate(screenHeight: 465)
-                  ? const SizedBox(height: 0.5)
-                  : const CustomSizedBox(),
-          hasUserAgreed
-              ? const Text('')
+          _heightSizeValidate(screenHeight: 465)
+              ? const SizedBox(height: 0.5)
+              : const CustomSizedBox(),
+          AppValues.userAgreedPolicy
+              ? const SizedBox()
               : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,34 +122,44 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
                     ),
                   ],
                 ),
-          hasUserAgreed
-              ? const Text('')
-              : _heightSizeValidate(screenHeight: 465)
-                  ? const CustomSizedBox()
-                  : const CustomSizedBox(heightRatio: 0.03),
-          hasUserAgreed
-              ? const Text('')
+          _heightSizeValidate(screenHeight: 465)
+              ? const CustomSizedBox()
+              : const CustomSizedBox(heightRatio: 0.03),
+          AppValues.userAgreedPolicy
+              ? GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    "Back",
+                    textScaleFactor: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 18, color: Colors.red),
+                  ),
+                )
               : CustomElevatedButton(
                   buttonText: 'Continue',
                   elevation: 0,
-                  borderColor: _agreeTermsConditions == true &&
-                          _agreePrivacyPolicy == true
-                      ? Colors.red
+                  borderColor: _agreePrivacyPolicy && _agreeTermsConditions
+                      ? AppColors.appThemeColor
                       : Colors.red.shade300,
-                  buttonColor: _agreeTermsConditions == true &&
-                          _agreePrivacyPolicy == true
-                      ? Colors.red.shade600
+                  buttonColor: _agreePrivacyPolicy && _agreeTermsConditions
+                      ? AppColors.appThemeColor
                       : Colors.red.shade300,
                   buttonPress: () {
                     if (_agreePrivacyPolicy == true &&
                         _agreeTermsConditions == true) {
-                      setState(() {
-                        hasUserAgreed = true;
-                      });
+                      AppValues.userAgreedPolicy = true;
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const OnBoardingScreen(),
+                          ));
+                    } else {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MainFoodScreen(),
                           ));
                     }
                   },

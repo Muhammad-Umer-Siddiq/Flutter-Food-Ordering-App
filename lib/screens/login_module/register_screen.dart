@@ -1,9 +1,5 @@
 import '../../utilities/imports.dart';
 
-// Fully responsive
-// Tested on min size of 320 × 320
-// Tested on full web size (display resolution: 1920 × 1080)
-
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -139,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     }
                   },
                 ),
-                const CustomSizedBox(heightRatio: 0.06),
+                const CustomSizedBox(heightRatio: 0.05),
                 CustomElevatedButton(
                     fontSize: 21,
                     buttonText: "Register",
@@ -153,7 +149,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ));
                       }
                     }),
-                const CustomSizedBox(heightRatio: 0.03),
+                const CustomSizedBox(heightRatio: 0.025),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,

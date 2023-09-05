@@ -1,5 +1,4 @@
-import 'package:food_ordering_app/screens/login_module/splash.dart';
-import 'package:food_ordering_app/utilities/imports.dart';
+import 'utilities/imports.dart';
 
 void main() {
   runApp(const MyApp());

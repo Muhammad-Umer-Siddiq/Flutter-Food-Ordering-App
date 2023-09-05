@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '../../utilities/imports.dart';
 
 class CartScreen extends StatefulWidget {
@@ -90,9 +88,6 @@ class _CartScreenState extends State<CartScreen> {
                                 (cartItems[index].quantity));
                       }
 
-                      log('Total price for ${cartItems[index].food!.foodName}: Rs. $foodItemTotalPrice (CS)');
-
-                      log('Total price after above food added to cart is: Rs. ${CartItemsHelpers.calculateTotalPrice(cartItems)} (CS)');
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CustomCard(

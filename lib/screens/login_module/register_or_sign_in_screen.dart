@@ -1,9 +1,5 @@
 import '../../utilities/imports.dart';
 
-// Fully responsive
-// Tested on min size of 320 × 320
-// Tested on full web size (1536 × 747)
-
 class RegisterOrSignInScreen extends StatelessWidget {
   const RegisterOrSignInScreen({super.key});
 

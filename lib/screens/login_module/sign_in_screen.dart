@@ -1,9 +1,5 @@
 import '../../utilities/imports.dart';
 
-// Fully responsive
-// Tested on min size of 320 × 320
-// Tested on full web size (display resolution: 1920 × 1080)
-
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
 
@@ -16,9 +12,6 @@ class _SignInScreenState extends State<SignInScreen> {
   bool _passwordShownS = true;
 
   void _showPasswordS() => setState(() => _passwordShownS = !_passwordShownS);
-
-  final String _account1Email = 'ahmed123@gmail.com';
-  final String _account1password = 'ahmed9999';
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +41,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   controller: AppConsts.emailControllerS,
                   hintText: 'abc123@gmail.com',
                   validator: (value) {
-                    if (value == _account1Email) {
+                    if (value == AppValues.account1Email) {
                       return null;
                     } else {
                       return 'No such email exists';
@@ -61,7 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   obscureText: _passwordShownS,
                   controller: AppConsts.passwordControllerS,
                   validator: (value) {
-                    if (value == _account1password) {
+                    if (value == AppValues.account1password) {
                       return null;
                     } else {
                       return 'Password is incorrect';

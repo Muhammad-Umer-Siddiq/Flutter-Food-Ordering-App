@@ -1,10 +1,5 @@
 import '../../utilities/imports.dart';
 
-// Fully responsive
-// Tested on min size of 320 × 320
-// Tested on full web size (1536 × 747)
-// Tested on Pixel 3a mobile
-
 class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key});
 
@@ -30,7 +25,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           Container(
             constraints: const BoxConstraints(maxWidth: 700),
             width: MediaQuery.sizeOf(context).width * 0.9,
-            height: MediaQuery.sizeOf(context).height * 0.48,
+            height: MediaQuery.sizeOf(context).height * 0.49,
             child: const SingleChildScrollView(
               child: Text(
                 AppConsts.privacyPolicyInfo,
@@ -42,17 +37,29 @@ class PrivacyPolicyScreen extends StatelessWidget {
             ),
           ),
           const CustomSizedBox(heightRatio: 0.05),
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Text(
-              "Back to Terms & Conditions",
-              textScaleFactor: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 18, color: Colors.red),
-            ),
-          )
+          AppValues.userAgreedPolicy
+              ? GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    "Back",
+                    textScaleFactor: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 18, color: Colors.red),
+                  ),
+                )
+              : GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    "Back to Terms & Conditions",
+                    textScaleFactor: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 18, color: Colors.red),
+                  ),
+                )
         ],
       ),
     ));

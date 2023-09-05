@@ -260,97 +260,100 @@ class _EachFoodDetailsScreenState extends State<EachFoodDetailsScreen> {
                                           color: Colors.red.shade900),
                                     ),
                                   ),
-                                  Container(
-                                    width: width * 0.24,
-                                    height: height * 0.1,
-                                    constraints:
-                                        const BoxConstraints(maxWidth: 155),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        // For minus
-                                        GestureDetector(
-                                          onTap: () => setState(() {
-                                            if (widget.popularFoodItem!
-                                                    .foodQuantity >
-                                                1) {
-                                              widget.popularFoodItem!
-                                                  .foodQuantity--;
-                                            }
-                                          }),
-                                          child: Container(
-                                            width: 25,
-                                            height: 25,
-                                            padding: const EdgeInsets.all(4),
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                              color: Colors.red.shade900,
-                                              shape: BoxShape.rectangle,
-                                            ),
-                                            child: const Icon(
-                                              CupertinoIcons.minus,
-                                              color: Colors.white,
-                                              size: 23,
-                                            ),
-                                          ),
-                                        ),
-
-                                        // number counter
-                                        Container(
-                                          width: 37,
-                                          height: 37,
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            widget.popularFoodItem!.foodQuantity
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: widget
-                                                            .popularFoodItem!
-                                                            .foodQuantity ==
-                                                        10
-                                                    ? 23
-                                                    : 24,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
-
-                                        // For plus
-                                        GestureDetector(
-                                          onTap: () {
-                                            setState(() {
+                                  Flexible(
+                                    child: Container(
+                                      width: width * 0.24,
+                                      height: height * 0.1,
+                                      constraints:
+                                          const BoxConstraints(maxWidth: 155),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          // For minus
+                                          GestureDetector(
+                                            onTap: () => setState(() {
                                               if (widget.popularFoodItem!
-                                                      .foodQuantity <
-                                                  30) {
+                                                      .foodQuantity >
+                                                  1) {
                                                 widget.popularFoodItem!
-                                                    .foodQuantity++;
+                                                    .foodQuantity--;
                                               }
-                                            });
-                                            widget.popularFoodItem!
-                                                        .foodQuantity ==
-                                                    30
-                                                ? Platform.isIOS
-                                                    ? _exceedLimitIos()
-                                                    : _exceedLimit()
-                                                : null;
-                                          },
-                                          child: Container(
-                                            width: 25,
-                                            height: 25,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                              color: Colors.red.shade900,
-                                              shape: BoxShape.rectangle,
-                                            ),
-                                            child: const Icon(
-                                              Icons.add,
-                                              color: Colors.white,
-                                              size: 23,
+                                            }),
+                                            child: Container(
+                                              width: 25,
+                                              height: 25,
+                                              padding: const EdgeInsets.all(4),
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color: Colors.red.shade900,
+                                                shape: BoxShape.rectangle,
+                                              ),
+                                              child: const Icon(
+                                                CupertinoIcons.minus,
+                                                color: Colors.white,
+                                                size: 23,
+                                              ),
                                             ),
                                           ),
-                                        )
-                                      ],
+
+                                          // number counter
+                                          Container(
+                                            width: 37,
+                                            height: 37,
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              widget
+                                                  .popularFoodItem!.foodQuantity
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  fontSize: widget
+                                                              .popularFoodItem!
+                                                              .foodQuantity ==
+                                                          10
+                                                      ? 23
+                                                      : 24,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ),
+
+                                          // For plus
+                                          GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                if (widget.popularFoodItem!
+                                                        .foodQuantity <
+                                                    30) {
+                                                  widget.popularFoodItem!
+                                                      .foodQuantity++;
+                                                }
+                                              });
+                                              widget.popularFoodItem!
+                                                          .foodQuantity ==
+                                                      30
+                                                  ? Platform.isIOS
+                                                      ? _exceedLimitIos()
+                                                      : _exceedLimit()
+                                                  : null;
+                                            },
+                                            child: Container(
+                                              width: 25,
+                                              height: 25,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color: Colors.red.shade900,
+                                                shape: BoxShape.rectangle,
+                                              ),
+                                              child: const Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                                size: 23,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],

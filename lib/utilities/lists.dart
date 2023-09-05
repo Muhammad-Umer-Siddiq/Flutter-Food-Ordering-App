@@ -1,14 +1,13 @@
 import '../utilities/imports.dart';
 
-class AppLists {}
-
 // dynamic data items
 List<Categories> regularMealsList = [];
 List<Drinks> drinksList = [];
 List<Meals> chickenMealsList = [];
+List<CartItem> cartItems = [];
 
 // static data items
-List<PopularFoodModel> popularFoodList = [
+final List<PopularFoodModel> popularFoodList = [
   PopularFoodModel(
       foodImageURL: 'assets/images/steak_bg_r_pic.png',
       foodName: 'Steak',
@@ -91,7 +90,7 @@ List<PopularFoodModel> popularFoodList = [
           "Dive into cheesy goodness with our classic Cheese Burger! Picture this: a juicy, perfectly grilled beef patty topped with melty, gooey cheese. The buns are soft and toasted just right for that extra crunch. Each bite is a harmonious symphony of flavors that will make your taste buds sing. Treat yourself to the ultimate comfort food experience with our delectable Cheese Burger - a true crowd-pleaser!"),
 ];
 
-List<PaymentTypeModel> paymentTypes = [
+final List<PaymentTypeModel> paymentTypes = [
   PaymentTypeModel(
       paymentIconURL: 'assets/icons/easypaisa_bg.png',
       paymentIsSelected: false),
@@ -103,5 +102,3 @@ List<PaymentTypeModel> paymentTypes = [
   PaymentTypeModel(
       paymentIconURL: 'assets/icons/hbl_bg.png', paymentIsSelected: false),
 ];
-
-List<CartItem> cartItems = [];

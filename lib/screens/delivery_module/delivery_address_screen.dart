@@ -86,6 +86,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Deliver to"),
@@ -95,6 +96,9 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
         titleTextStyle: const TextStyle(fontSize: 26, color: Colors.black),
       ),
       body: SingleChildScrollView(
+        physics: height < 400
+            ? const NeverScrollableScrollPhysics()
+            : const AlwaysScrollableScrollPhysics(),
         child: CustomSizedBox(
           widthRatio: 1,
           heightRatio: 1,
@@ -110,16 +114,16 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
                 ),
                 const CustomSizedBox(heightRatio: 0.025),
                 TitleTextField(
-                  title: 'Name',
+                  title: 'Name *',
                   controller: AppConsts.nameControllerD,
                 ),
                 TitleTextField(
-                  title: 'Address',
+                  title: 'Address *',
                   controller: AppConsts.addressControllerD,
                   keyboard: TextInputType.streetAddress,
                 ),
                 TitleTextField(
-                  title: 'Phone',
+                  title: 'Phone *',
                   maxLength: 11,
                   controller: AppConsts.phoneControllerD,
                   keyboard: TextInputType.phone,
@@ -200,7 +204,12 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
                         LoginHelpers.registerFieldsEmpty() &&
                         AppValues.useProfileForDelivery == true) {
                       _dialogAddressNotGiven();
-                    } else {
+                    }
+                    if (AppConsts.emailControllerS.text ==
+                            AppValues.account1Email &&
+                        AppConsts.passwordControllerS.text ==
+                            AppValues.account1password &&
+                        AppValues.useProfileForDelivery) {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

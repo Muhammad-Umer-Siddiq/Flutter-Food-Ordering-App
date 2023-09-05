@@ -49,6 +49,8 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height;
+    double width = MediaQuery.sizeOf(context).width;
     return Align(
       alignment: buttonAlignment ?? Alignment.center,
       child: Padding(
@@ -57,14 +59,13 @@ class CustomElevatedButton extends StatelessWidget {
           constraints: BoxConstraints(
             minWidth: minWidth ?? 90,
             minHeight: minHeight ?? 25,
-            maxWidth: maxWidth ?? 450,
+            maxWidth: maxWidth ?? 420,
 
             maxHeight: maxHeight ?? 150,
             // button should stretch to a limit in case of screen size increasing
           ),
-          width: MediaQuery.sizeOf(context).width * (buttonWidthRatio ?? 0.75),
-          height:
-              MediaQuery.sizeOf(context).height * (buttonHeightRatio ?? 0.06),
+          width: width * (buttonWidthRatio ?? 0.7),
+          height: height * (buttonHeightRatio ?? 0.054),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 shadowColor: shadowColor,
@@ -79,10 +80,10 @@ class CustomElevatedButton extends StatelessWidget {
                 backgroundColor: buttonColor ?? AppColors.appThemeColor,
               ),
               onPressed: buttonPress,
-              child: MediaQuery.sizeOf(context).height < (screenHeight ?? 400)
+              child: height < (screenHeight ?? 400)
                   // to make button child responsive if screen height drops below 400
                   ? SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 1,
+                      height: height * 1,
                       child: FittedBox(
                         child: Text(
                           buttonText,

@@ -29,6 +29,7 @@ class TitleTextField extends StatelessWidget {
           ),
         ),
         CustomTextFormFiled(
+          maxWidth: 720,
           cursorColor: Colors.black26,
           maxLength: maxLength,
           haveCardField: true,

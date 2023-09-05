@@ -27,6 +27,7 @@ class CustomTextFormFiled extends StatelessWidget {
   final bool? readOnly;
   final VoidCallback? onTapField;
   final bool? autoFocus;
+  final double? maxWidth;
   const CustomTextFormFiled({
     super.key,
     this.labelText,
@@ -55,12 +56,13 @@ class CustomTextFormFiled extends StatelessWidget {
     this.helperText,
     this.helperTextStyle,
     this.autoFocus,
+    this.maxWidth,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 630),
+      constraints: BoxConstraints(maxWidth: maxWidth ?? 630),
       width: MediaQuery.sizeOf(context).width * (fieldWidth ?? 0.6),
       child: haveCardField
           ? Card(

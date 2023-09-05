@@ -1,16 +1,16 @@
 import 'package:http/http.dart' as http;
 
-import '../../../utilities/imports.dart';
+import '../../../../utilities/imports.dart';
 
-class DrinksTab extends StatefulWidget {
-  const DrinksTab({super.key});
+class ChickenMealTab extends StatefulWidget {
+  const ChickenMealTab({super.key});
 
   @override
-  State<DrinksTab> createState() => _DrinksTabState();
+  State<ChickenMealTab> createState() => _ChickenMealTabState();
 }
 
-class _DrinksTabState extends State<DrinksTab> {
-  void _detailsNotPossible() {
+class _ChickenMealTabState extends State<ChickenMealTab> {
+  void _showDialogAndroid() {
     showDialog(
         context: context,
         builder: (context) => CustomAlertDialog(
@@ -26,7 +26,7 @@ class _DrinksTabState extends State<DrinksTab> {
             ));
   }
 
-  void _detailsNotPossibleIOS() {
+  void _showDialogIOS() {
     showDialog(
         context: context,
         builder: (context) => CustomCupertinoAlertDialog(
@@ -41,52 +41,49 @@ class _DrinksTabState extends State<DrinksTab> {
             ));
   }
 
-  Future fetchDrinksData() async {
-    var uri = Uri.parse(HttpEndpoints.drinksEndpoint);
+  Future fetchChickenMealsData() async {
+    var uri = Uri.parse(HttpEndpoints.chickenEndpoint);
     final response = await http.get(uri);
-
     if (response.statusCode == 200 || response.statusCode == 201) {
       var data = jsonDecode(response.body);
-      var drinksJson = data['drinks'] as List;
+      var chickenJson = data['meals'] as List;
       setState(() {
-        drinksList = drinksJson.map((e) => Drinks.fromJson(e)).toList();
+        chickenMealsList = chickenJson.map((e) => Meals.fromJson(e)).toList();
       });
-      return drinksList;
+      return chickenMealsList;
     } else {}
   }
 
   @override
   void initState() {
-    fetchDrinksData();
     super.initState();
+    fetchChickenMealsData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return drinksList.isEmpty
+    return chickenMealsList.isEmpty
         ? const Center(
             child: CircularProgressIndicator(
               color: AppColors.appThemeColor,
             ),
           )
         : CustomGridViewBuilder(
-            itemCount: drinksList.length,
+            itemCount: chickenMealsList.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(10),
                 child: CustomCard(
                     elevation: 6,
                     cardTap: () {
-                      Platform.isIOS
-                          ? _detailsNotPossibleIOS()
-                          : _detailsNotPossible();
+                      Platform.isIOS ? _showDialogIOS() : _showDialogAndroid();
                     },
                     contentWidget: FoodDisplayTile(
                       foodImage: Image.network(
-                          drinksList[index].strDrinkThumb.toString()),
-                      foodName: drinksList[index].strDrink,
+                          chickenMealsList[index].strMealThumb.toString()),
+                      foodName: chickenMealsList[index].strMeal,
                       bottomWidget: Text(
-                        "Meal # ${drinksList[index].idDrink ?? ""}",
+                        "Meal # ${chickenMealsList[index].idMeal ?? ""}",
                         textScaleFactor: 1,
                         textAlign: TextAlign.center,
                         style: const TextStyle(

@@ -4,6 +4,11 @@ class AppValues {
   static bool shouldPayOnArrival = false;
   static bool showError = true;
 
+  static const String account1Email = 'ahmed177588@gmail.com';
+  static const String account1password = 'ahmed9999';
+
+  static bool userAgreedPolicy = false;
+
   // Might change
   static const double chargeForExtras = 70;
   static String name = 'Ahmed';

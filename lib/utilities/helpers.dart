@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '../utilities/imports.dart';
 
 class LoginHelpers {
@@ -33,16 +31,11 @@ class CartItemsHelpers {
       if (cartItem.food!.extrasCheck) {
         // If user has selected extras, then add it's respective price
         foodPrice += cartItem.food!.extrasPrice;
-        log("Food Price with Food Extras for ${cartItem.food!.foodName} : Rs. $foodPrice (AC)");
       }
       foodPrice += cartItem.food!.foodPrice;
-      log("  Price with food price & extra ${cartItem.food!.foodName} : Rs. $foodPrice(AC)");
-
       int totalEachFoodPrice = foodPrice * cartItem.food!.foodQuantity;
-      log("Total food price including quantity & food extras ${cartItem.food!.foodName} : Rs. $totalEachFoodPrice (AC)");
 
       totalOrderPrice += totalEachFoodPrice;
-      log('Total Order price $totalOrderPrice (AC)');
     }
     return totalOrderPrice;
   }
