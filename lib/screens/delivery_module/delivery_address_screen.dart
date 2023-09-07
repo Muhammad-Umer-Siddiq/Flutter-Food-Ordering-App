@@ -206,9 +206,9 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
                       _dialogAddressNotGiven();
                     }
                     if (AppConsts.emailControllerS.text ==
-                            AppValues.account1Email &&
+                            AppValues.userEmail &&
                         AppConsts.passwordControllerS.text ==
-                            AppValues.account1password &&
+                            AppValues.userPassword &&
                         AppValues.useProfileForDelivery) {
                       Navigator.pushReplacement(
                           context,

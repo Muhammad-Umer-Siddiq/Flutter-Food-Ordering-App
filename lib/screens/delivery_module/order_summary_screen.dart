@@ -187,15 +187,15 @@ class OrderSummaryScreen extends StatelessWidget {
                                 children: <DeliveryDetailsTile>[
                                   DeliveryDetailsTile(
                                     title: 'Name: ',
-                                    details: AppValues.name,
+                                    details: AppValues.userName,
                                   ),
                                   DeliveryDetailsTile(
                                     title: 'Phone: ',
-                                    details: AppValues.phoneNumber,
+                                    details: AppValues.userPhoneNumber,
                                   ),
                                   DeliveryDetailsTile(
                                     title: 'Address: ',
-                                    details: AppValues.homeAddress,
+                                    details: AppValues.userAddress,
                                   ),
                                 ],
                               ),

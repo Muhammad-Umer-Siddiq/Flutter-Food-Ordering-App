@@ -8,19 +8,6 @@ class MainFoodScreen extends StatefulWidget {
 }
 
 class _MainFoodScreenState extends State<MainFoodScreen> {
-  String _name = 'Ahmed';
-  String _emailAddress = 'ahmed123@gmail.com';
-
-  void newDetails() {
-    if (AppConsts.emailControllerR.text.isNotEmpty &&
-        AppConsts.nameControllerR.text.isNotEmpty) {
-      setState(() {
-        _name = AppConsts.nameControllerR.text;
-        _emailAddress = AppConsts.emailControllerR.text;
-      });
-    }
-  }
-
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -81,13 +68,13 @@ class _MainFoodScreenState extends State<MainFoodScreen> {
                     ),
                   ),
                   Text(
-                    _name,
+                    AppValues.userName,
                     style: const TextStyle(
                         fontSize: 21, fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    _emailAddress,
-                    style: const TextStyle(fontSize: 18),
+                  const Text(
+                    AppValues.userEmail,
+                    style: TextStyle(fontSize: 18),
                   )
                 ],
               )),

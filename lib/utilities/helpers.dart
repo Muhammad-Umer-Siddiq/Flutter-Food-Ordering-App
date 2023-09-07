@@ -88,14 +88,14 @@ class DeliveryProcessHelpers {
 
   static void newDetails() {
     if (DeliveryProcessHelpers.deliveryFieldsEmpty() == false) {
-      AppValues.name = AppConsts.nameControllerD.text;
-      AppValues.homeAddress = AppConsts.addressControllerD.text;
-      AppValues.phoneNumber = AppConsts.phoneControllerD.text;
+      AppValues.userName = AppConsts.nameControllerD.text;
+      AppValues.userAddress = AppConsts.addressControllerD.text;
+      AppValues.userPhoneNumber = AppConsts.phoneControllerD.text;
     } else {
       // If user has provided details during register screen & approve to use that,then
-      AppValues.name = AppConsts.nameControllerR.text;
-      AppValues.homeAddress = AppConsts.streetControllerR.text;
-      AppValues.phoneNumber = AppConsts.phoneControllerR.text;
+      AppValues.userName = AppConsts.nameControllerR.text;
+      AppValues.userAddress = AppConsts.streetControllerR.text;
+      AppValues.userPhoneNumber = AppConsts.phoneControllerR.text;
     }
   }
 

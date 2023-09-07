@@ -41,7 +41,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   controller: AppConsts.emailControllerS,
                   hintText: 'abc123@gmail.com',
                   validator: (value) {
-                    if (value == AppValues.account1Email) {
+                    if (value == AppValues.userEmail) {
                       return null;
                     } else {
                       return 'No such email exists';
@@ -54,7 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   obscureText: _passwordShownS,
                   controller: AppConsts.passwordControllerS,
                   validator: (value) {
-                    if (value == AppValues.account1password) {
+                    if (value == AppValues.userPassword) {
                       return null;
                     } else {
                       return 'Password is incorrect';
