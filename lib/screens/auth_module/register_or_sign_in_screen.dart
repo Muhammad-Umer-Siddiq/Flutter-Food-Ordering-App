@@ -1,7 +1,7 @@
 import '../../utilities/imports.dart';
 
-class RegisterOrSignInScreen extends StatelessWidget {
-  const RegisterOrSignInScreen({super.key});
+class GetStartedScreen extends StatelessWidget {
+  const GetStartedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
