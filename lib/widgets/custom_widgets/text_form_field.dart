@@ -132,6 +132,7 @@ class CustomTextFormFiled extends StatelessWidget {
               ),
             )
           : TextFormField(
+
               autofocus: autoFocus ?? false,
               readOnly: readOnly ?? false,
               onTap: onTapField,
@@ -147,6 +148,7 @@ class CustomTextFormFiled extends StatelessWidget {
               style: TextStyle(color: textColor ?? Colors.white, fontSize: 19),
               keyboardType: keyboardType ?? TextInputType.text,
               decoration: InputDecoration(
+
                   helperText: helperText,
                   helperStyle:
                       helperTextStyle ?? const TextStyle(color: Colors.white70),

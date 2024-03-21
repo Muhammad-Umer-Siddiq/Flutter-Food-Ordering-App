@@ -7,7 +7,7 @@ export 'package:food_ordering_app/screens/about_module/privacy_policy_screen.dar
 export 'package:food_ordering_app/screens/about_module/terms_conditions_screen.dart';
 export 'package:food_ordering_app/screens/auth_module/get_started_screen.dart';
 export 'package:food_ordering_app/screens/auth_module/on_boarding_screen.dart';
-export 'package:food_ordering_app/screens/auth_module/register_or_sign_in_screen.dart';
+export 'package:food_ordering_app/screens/auth_module/register_screen.dart';
 export 'package:food_ordering_app/screens/auth_module/sign_in_screen.dart';
 export 'package:food_ordering_app/screens/auth_module/splash.dart';
 export 'package:food_ordering_app/screens/delivery_module/delivery_address_screen.dart';
