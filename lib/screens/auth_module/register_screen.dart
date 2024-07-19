@@ -1,4 +1,4 @@
-import '../../utilities/imports.dart';
+import 'package:food_ordering_app/utilities/imports.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

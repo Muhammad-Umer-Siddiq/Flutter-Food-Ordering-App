@@ -1,13 +1,8 @@
 import '../../../../utilities/imports.dart';
 
-class PopularFoodTab extends StatefulWidget {
+class PopularFoodTab extends StatelessWidget {
   const PopularFoodTab({super.key});
 
-  @override
-  State<PopularFoodTab> createState() => _PopularFoodTabState();
-}
-
-class _PopularFoodTabState extends State<PopularFoodTab> {
   @override
   Widget build(BuildContext context) {
     return CustomGridViewBuilder(
